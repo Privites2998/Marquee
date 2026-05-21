@@ -15,7 +15,8 @@
     { id: 'lyric',       name: 'Lyric',           href: 'games/lyric/index.html',       desc: 'Name the show. Then name the song.',       emoji: '🎵' },
     { id: 'connections', name: 'Connections',     href: 'games/connections/index.html', desc: '3×3 grid. Cast fits row + column.',        emoji: '🔲' },
     { id: 'actor',       name: 'Name the Actor',  href: 'games/actor/index.html',       desc: 'A bio. One credit revealed at a time.',    emoji: '🎭' },
-    { id: 'logo',        name: 'Logo Reveal',     href: 'games/logo/index.html',        desc: 'A fragment of an iconic logo. Identify.',  emoji: '✨' }
+    { id: 'showdown',    name: 'Showdown',        href: 'games/showdown/index.html',    desc: 'Five head-to-heads. Pick the bigger one.', emoji: '⚖️' },
+    { id: 'spotlight',   name: 'Spotlight',       href: 'games/spotlight/index.html',   desc: 'Daily trivia category. Five clues.',       emoji: '💡' }
   ];
 
   function todayLocal() {

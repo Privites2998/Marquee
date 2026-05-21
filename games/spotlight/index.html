@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spotlight · Marquee</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="spotlight.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="game-shell">
+  <nav class="game-nav" data-game-header></nav>
+
+  <section class="surface">
+    <div class="sp-category-frame">
+      <div class="sp-category-label">Today's category</div>
+      <h2 class="sp-category" data-category></h2>
+    </div>
+
+    <div class="sp-progress">
+      <span data-correct>0</span> / <span data-total>5</span> · solve in any order
+    </div>
+
+    <ol class="sp-clue-list" data-clues></ol>
+
+    <div data-result class="hidden"></div>
+  </section>
+</div>
+
+<script src="../../shared.js"></script>
+<script src="categories.js"></script>
+<script src="spotlight.js"></script>
+</body>
+</html>

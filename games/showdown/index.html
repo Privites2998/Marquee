@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Showdown · Marquee</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="showdown.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="game-shell">
+  <nav class="game-nav" data-game-header></nav>
+
+  <section class="surface">
+    <div class="sd-progress">
+      <div class="sd-progress__label">
+        Round <span data-round>1</span> of <span data-total>5</span>
+      </div>
+      <div class="sd-progress__pips" data-pips></div>
+    </div>
+
+    <div class="sd-prompt" data-prompt></div>
+
+    <div class="sd-match" data-match>
+      <!-- two cards injected by JS -->
+    </div>
+
+    <div class="sd-feedback hidden" data-feedback>
+      <div class="sd-feedback__result" data-feedback-result></div>
+      <div class="sd-feedback__note" data-feedback-note></div>
+      <button class="btn" data-next>Next</button>
+    </div>
+
+    <div data-result class="hidden"></div>
+  </section>
+</div>
+
+<script src="../../shared.js"></script>
+<script src="matchups.js"></script>
+<script src="showdown.js"></script>
+</body>
+</html>
