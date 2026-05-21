@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tools · Marquee</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+.tools-shell { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.tools-head { text-align: center; padding: 1rem 0 2rem; }
+.tools-head h1 {
+  font-family: var(--font-display); font-size: 2.4rem; color: var(--bulb-on);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.tools-head p { color: var(--bulb-off); font-size: 0.85rem; letter-spacing: 0.04em; }
+.tools-list { display: flex; flex-direction: column; gap: 1rem; }
+.tools-card {
+  background: var(--paper); color: var(--ink); padding: 1.2rem 1.4rem;
+  border-radius: 3px; text-decoration: none; box-shadow: var(--shadow-soft);
+  display: block; transition: transform 0.15s, box-shadow 0.15s;
+}
+.tools-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-deep); }
+.tools-card h2 {
+  font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 0.3rem; color: var(--curtain-dark);
+}
+.tools-card p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.45; }
+.tools-warning {
+  margin-top: 2rem; font-size: 0.78rem; color: var(--bulb-off);
+  text-align: center; font-style: italic; letter-spacing: 0.04em;
+}
+.tools-warning a { color: var(--bulb-on); }
+</style>
+</head>
+<body>
+<div class="tools-shell">
+  <header class="tools-head">
+    <h1>Tools</h1>
+    <p>Authoring helpers for Marquee. Not for players.</p>
+  </header>
+
+  <div class="tools-list">
+    <a class="tools-card" href="grid-generator/index.html">
+      <h2>Crossword Grid Generator</h2>
+      <p>Find valid 5×5 grids from a word list, browse results, then fill in clues and export to <code>puzzles.js</code> format.</p>
+    </a>
+    <a class="tools-card" href="preview/index.html">
+      <h2>Preview &amp; Validate</h2>
+      <p>List every puzzle in every game by slot. Preview live in an iframe. Surfaces structural issues per game (missing clues, empty Connections cells, ties in Showdown, etc.).</p>
+    </a>
+  </div>
+
+  <div class="tools-warning">
+    Not linked from <a href="../index.html">the Marquee hub</a>. Bookmark this page.
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid Generator · Marquee Tools</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="grid-gen.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="tool-shell">
+  <nav class="tool-nav">
+    <a class="back-link" href="../index.html">Tools</a>
+    <div class="tool-title">Crossword Grid Generator</div>
+    <div></div>
+  </nav>
+
+  <section class="tool-section">
+    <h2>1. Generate grids</h2>
+    <p class="tool-help">
+      Finds valid 5×5 grids from the word list in <code>words.js</code>.
+      Every row and every column will be a real word.
+    </p>
+    <div class="row row--wrap" style="gap: 0.7rem; align-items: center">
+      <label>How many: <input type="number" class="input input--inline" data-max-results value="20" min="1" max="200"></label>
+      <label>Timeout (sec): <input type="number" class="input input--inline" data-timeout value="6" min="1" max="30"></label>
+      <label class="checkbox-label">
+        <input type="checkbox" data-prefer-theater>
+        Prefer grids with theater words
+      </label>
+      <button class="btn" data-generate>Generate</button>
+      <span class="tool-status" data-status></span>
+    </div>
+  </section>
+
+  <section class="tool-section">
+    <h2>2. Browse results</h2>
+    <div class="gg-results" data-results>
+      <div class="tool-empty">No grids generated yet — click "Generate" above.</div>
+    </div>
+  </section>
+
+  <section class="tool-section tool-section--clue hidden" data-clue-section>
+    <h2>3. Add clues + export</h2>
+    <div class="gg-clue-pane">
+      <div class="gg-clue-grid">
+        <div class="gg-grid-preview" data-clue-grid></div>
+        <div class="gg-words-list" data-clue-words></div>
+      </div>
+      <div class="gg-clue-form">
+        <label>Puzzle title (optional)
+          <input class="input" data-title-input placeholder="Curtain Up">
+        </label>
+        <div class="gg-clue-cols">
+          <div>
+            <h3>Across</h3>
+            <div data-across-clues></div>
+          </div>
+          <div>
+            <h3>Down</h3>
+            <div data-down-clues></div>
+          </div>
+        </div>
+        <div class="row row--end" style="gap: 0.5rem; margin-top: 1rem">
+          <button class="btn btn--ghost btn--sm" data-back>Back to results</button>
+          <button class="btn btn--sm" data-export>Export as JS object</button>
+        </div>
+        <pre class="gg-export-output hidden" data-export-output></pre>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script src="../../shared.js"></script>
+<script src="words.js"></script>
+<script src="generator.js"></script>
+<script src="grid-gen.js"></script>
+</body>
+</html>

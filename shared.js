@@ -25,6 +25,19 @@
   }
 
   function dayIndex(date) {
+    // URL override: ?day=N forces a specific day index. Used by the preview
+    // tool to load any puzzle. Harmless for regular users; worst case they
+    // play tomorrow's puzzle a day early.
+    if (typeof window !== 'undefined' && window.location && window.location.search) {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const override = params.get('day');
+        if (override !== null && override !== '') {
+          const n = parseInt(override, 10);
+          if (!Number.isNaN(n)) return n;
+        }
+      } catch (_) { /* ignore */ }
+    }
     const d = date || todayLocal();
     const ms = d.getTime() - EPOCH.getTime();
     return Math.floor(ms / 86400000);

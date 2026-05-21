@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preview · Marquee Tools</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="preview.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="tool-shell">
+  <nav class="tool-nav">
+    <a class="back-link" href="../index.html">Tools</a>
+    <div class="tool-title">Preview &amp; Validate</div>
+    <div></div>
+  </nav>
+
+  <section class="tool-section">
+    <h2>Today</h2>
+    <div data-today-block></div>
+  </section>
+
+  <section class="tool-section" data-validators-section>
+    <h2>Validators</h2>
+    <div data-validators></div>
+  </section>
+
+  <section class="tool-section">
+    <h2>All puzzles</h2>
+    <div data-games></div>
+  </section>
+</div>
+
+<!-- Preview iframe overlay -->
+<div class="pv-modal hidden" data-modal>
+  <div class="pv-modal__bar">
+    <div class="pv-modal__title" data-modal-title></div>
+    <a class="pv-modal__open" target="_blank" rel="noopener" data-modal-newtab>Open in new tab</a>
+    <button class="pv-modal__close" data-modal-close>×</button>
+  </div>
+  <iframe class="pv-modal__frame" data-modal-frame title="Preview"></iframe>
+</div>
+
+<script src="../../shared.js"></script>
+<script src="../../games/crossword/puzzles.js"></script>
+<script src="../../games/lyric/puzzles.js"></script>
+<script src="../../games/connections/puzzles.js"></script>
+<script src="../../games/actor/actors.js"></script>
+<script src="../../games/showdown/matchups.js"></script>
+<script src="../../games/spotlight/categories.js"></script>
+<script src="preview.js"></script>
+</body>
+</html>
