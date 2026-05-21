@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logo Reveal · Marquee</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="logo.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="game-shell">
+  <nav class="game-nav" data-game-header></nav>
+
+  <section class="surface">
+    <div class="logo-stage-label">
+      <span data-stage-label>Stage 1 of 5 — tightest crop</span>
+    </div>
+
+    <div class="logo-frame">
+      <svg class="logo-svg" data-svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet"
+           xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+
+    <div class="logo-hint" data-hint></div>
+
+    <div class="logo-input-row">
+      <input class="input" data-input autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Name the show…">
+      <button class="btn" data-submit>Guess</button>
+    </div>
+
+    <div class="row row--center row--wrap" style="margin-top: 0.6rem">
+      <button class="btn btn--ghost btn--sm" data-zoomout>Show me more</button>
+      <button class="btn btn--ghost btn--sm" data-giveup>Give up</button>
+    </div>
+
+    <div class="guesses" data-guesses style="margin-top: 1rem"></div>
+
+    <div data-result class="hidden"></div>
+  </section>
+</div>
+
+<script src="../../shared.js"></script>
+<script src="logos.js"></script>
+<script src="logo.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Crossword · Marquee</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="crossword.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="game-shell">
+  <nav class="game-nav" data-game-header></nav>
+
+  <section class="surface">
+    <div data-puzzle-title class="xword-puzzle-title"></div>
+
+    <div class="xword-layout">
+      <div class="xword-grid-wrap">
+        <div class="xword-grid" data-grid role="grid" aria-label="Crossword grid"></div>
+      </div>
+
+      <div class="xword-current" data-current-clue>
+        <span class="xword-current__dir">—</span>
+        <span class="xword-current__text">Click a cell to start.</span>
+      </div>
+    </div>
+
+    <div class="xword-clues">
+      <div class="xword-clues__col">
+        <h3>Across</h3>
+        <ol data-across-list></ol>
+      </div>
+      <div class="xword-clues__col">
+        <h3>Down</h3>
+        <ol data-down-list></ol>
+      </div>
+    </div>
+
+    <div class="xword-actions row row--center row--wrap">
+      <button class="btn btn--ghost btn--sm" data-action="check">Check letter</button>
+      <button class="btn btn--ghost btn--sm" data-action="reveal">Reveal letter</button>
+      <button class="btn btn--ghost btn--sm" data-action="clear">Clear grid</button>
+    </div>
+
+    <div data-result class="hidden"></div>
+  </section>
+</div>
+
+<input class="xword-hidden-input" data-hidden-input autocapitalize="characters" autocomplete="off" spellcheck="false" aria-hidden="true">
+
+<script src="../../shared.js"></script>
+<script src="puzzles.js"></script>
+<script src="crossword.js"></script>
+</body>
+</html>

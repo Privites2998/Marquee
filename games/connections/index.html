@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connections · Marquee</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="connections.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="game-shell">
+  <nav class="game-nav" data-game-header></nav>
+
+  <section class="surface">
+    <div class="cx-intro">
+      <div class="prompt__label">Pick an actor who fits each row × column. Each name once.</div>
+    </div>
+
+    <div class="cx-board" data-board></div>
+
+    <div class="cx-footer">
+      <div class="cx-stats">
+        <span data-filled>0</span> / 9 cells ·
+        <span data-guesses>0</span> guess<span data-guess-plural>es</span>
+      </div>
+      <button class="btn btn--ghost btn--sm" data-giveup>Give up</button>
+    </div>
+
+    <div data-result class="hidden"></div>
+  </section>
+</div>
+
+<!-- Cell-picker modal -->
+<div class="cx-modal hidden" data-modal>
+  <div class="cx-modal__sheet">
+    <div class="cx-modal__title" data-modal-title></div>
+    <div class="cx-modal__sub">Type an actor's name</div>
+    <input class="input" data-modal-input autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="e.g. Idina Menzel">
+    <div class="cx-modal__msg" data-modal-msg></div>
+    <div class="row row--end" style="margin-top: 0.8rem; gap: 0.5rem">
+      <button class="btn btn--ghost btn--sm" data-modal-cancel>Cancel</button>
+      <button class="btn btn--sm" data-modal-submit>Submit</button>
+    </div>
+  </div>
+</div>
+
+<script src="../../shared.js"></script>
+<script src="puzzles.js"></script>
+<script src="connections.js"></script>
+</body>
+</html>

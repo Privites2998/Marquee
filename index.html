@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marquee — Daily Broadway games</title>
+<meta name="description" content="Five short Broadway puzzles. New every day.">
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<main class="hub">
+  <section class="hub-hero">
+    <div class="bulbs bulbs--chase hub-hero__bulbs"></div>
+    <h1 class="hub-title">Marquee</h1>
+    <div class="hub-subtitle">Daily Broadway games</div>
+    <div class="bulbs bulbs--chase hub-hero__bulbs" style="margin-top: 0.75rem"></div>
+    <div class="hub-date" data-today></div>
+  </section>
+
+  <div class="streak-bar">
+    <div>
+      <div class="streak-bar__label">Today</div>
+      <div class="streak-bar__value" data-today-count>0 / 5</div>
+    </div>
+    <div style="text-align:center">
+      <div class="streak-bar__label">All-5 Streak</div>
+      <div class="streak-bar__value" data-suite-streak>0</div>
+    </div>
+    <div style="text-align:right">
+      <div class="streak-bar__label">Longest</div>
+      <div class="streak-bar__value" data-suite-longest>0</div>
+    </div>
+  </div>
+
+  <section class="game-grid" data-game-grid></section>
+</main>
+
+<footer class="footer">
+  Curtain up · A daily Broadway puzzle suite
+</footer>
+
+<script src="shared.js"></script>
+<script>
+  (function () {
+    document.querySelector('[data-today]').textContent = Marquee.prettyDate();
+
+    const summary = Marquee.todaySummary();
+    document.querySelector('[data-today-count]').textContent =
+      summary.count + ' / ' + summary.total;
+
+    const suite = Marquee.getStreak('suite');
+    document.querySelector('[data-suite-streak]').textContent = suite.current;
+    document.querySelector('[data-suite-longest]').textContent = suite.longest;
+
+    const grid = document.querySelector('[data-game-grid]');
+    grid.innerHTML = Marquee.GAMES.map(function (g, i) {
+      const solved = summary.states[g.id].solved;
+      const streak = Marquee.getStreak(g.id);
+      return (
+        '<a class="game-card ' + (solved ? 'is-solved' : '') + '" href="' + g.href + '">' +
+          '<div class="game-card__eyebrow">No. 0' + (i + 1) + ' · ' + (streak.current ? streak.current + '-day streak' : 'play today') + '</div>' +
+          '<div class="game-card__name">' + g.name + '</div>' +
+          '<div class="game-card__desc">' + g.desc + '</div>' +
+          '<div class="game-card__badge">' + (solved ? '✓' : g.emoji) + '</div>' +
+        '</a>'
+      );
+    }).join('');
+  })();
+</script>
+</body>
+</html>
