@@ -297,11 +297,51 @@ input { font-family: inherit; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.8rem;
   padding: 0.8rem 0 1.2rem;
 }
 
+.game-nav__side {
+  flex: 0 0 auto;
+  min-width: 0;
+  display: flex;
+}
+.game-nav__side--left  { justify-content: flex-start; }
+.game-nav__side--right { justify-content: flex-end; }
+
+.game-nav__adj {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--paper);
+  text-decoration: none;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  opacity: 0.7;
+  transition: opacity 0.15s, color 0.15s;
+  padding: 0.3rem 0.4rem;
+  border-radius: 2px;
+}
+
+.game-nav__adj:hover { opacity: 1; color: var(--bulb-on); background: rgba(244, 196, 48, 0.06); }
+
+.game-nav__arrow {
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--bulb-on);
+  opacity: 0.8;
+}
+
+.game-nav__adj-name {
+  max-width: 7.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .back-link {
+  /* Legacy class — still used by tool pages */
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -315,13 +355,25 @@ input { font-family: inherit; }
 }
 
 .back-link:hover { opacity: 1; color: var(--bulb-on); }
-
 .back-link::before { content: '←'; font-size: 1rem; opacity: 0.7; }
 
 .game-title-wrap {
   text-align: center;
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
 }
+
+.game-nav__hub {
+  font-size: 0.6rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--bulb-off);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 0.25rem;
+  transition: color 0.15s;
+}
+.game-nav__hub:hover { color: var(--bulb-on); }
 
 .game-title {
   font-family: var(--font-display);
@@ -330,6 +382,7 @@ input { font-family: inherit; }
   text-transform: uppercase;
   color: var(--bulb-on);
   font-weight: 700;
+  line-height: 1.1;
 }
 
 .game-meta {
@@ -341,12 +394,12 @@ input { font-family: inherit; }
 }
 
 .game-nav__right {
+  /* legacy slot, no longer used by main games */
   font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--bulb-off);
   text-align: right;
-  min-width: 70px;
 }
 
 .surface {
@@ -578,6 +631,119 @@ input { font-family: inherit; }
 .col { display: flex; flex-direction: column; gap: 0.6rem; }
 
 @media (max-width: 520px) {
-  .game-nav { flex-wrap: wrap; }
   .surface { padding: 1.5rem 1.1rem; }
+  .game-nav__adj-name { display: none; }   /* arrows only on narrow screens */
+  .game-nav__adj { padding: 0.5rem 0.6rem; min-height: 44px; min-width: 44px; }
+  .game-nav__arrow { font-size: 1.6rem; }
+  .game-title { font-size: 1.2rem; letter-spacing: 0.12em; }
+  .game-meta { font-size: 0.62rem; }
+  .streak-bar {
+    padding: 0.7rem 0.9rem;
+    gap: 0.6rem;
+  }
+  .streak-bar__label { font-size: 0.6rem; letter-spacing: 0.14em; }
+  .streak-bar__value { font-size: 0.98rem; }
+  .hub { padding: 1rem 1rem 3rem; }
+  .game-card { padding: 1.5rem 1.25rem 1.3rem; }
+  .btn { padding: 0.75rem 1.2rem; min-height: 44px; }
+  .btn--sm { padding: 0.55rem 0.85rem; min-height: 38px; }
+  .input { padding: 0.85rem 0.9rem; min-height: 44px; }
+}
+
+@media (max-width: 360px) {
+  /* Very narrow phones — stack streak-bar vertically */
+  .streak-bar {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  .streak-bar > div { text-align: center !important; }
+  .hub-title { font-size: clamp(2.4rem, 14vw, 4rem); }
+}
+
+/* ============================================
+   Welcome modal (first-visit)
+   ============================================ */
+
+.welcome {
+  position: fixed; inset: 0;
+  background: rgba(10, 5, 5, 0.78);
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  z-index: 100;
+  animation: welcome-fade 0.25s ease;
+}
+
+@keyframes welcome-fade { from { opacity: 0; } to { opacity: 1; } }
+
+.welcome__sheet {
+  background: var(--paper);
+  color: var(--ink);
+  padding: 2.2rem 2rem 1.8rem;
+  border-radius: 4px;
+  width: min(480px, 100%);
+  text-align: center;
+  box-shadow: var(--shadow-deep);
+  border: 2px solid var(--bulb-on);
+}
+
+.welcome__title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--curtain-dark);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.6rem;
+}
+
+.welcome__body {
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  line-height: 1.45;
+  margin-bottom: 1.1rem;
+}
+
+.welcome__list {
+  text-align: left;
+  list-style: none;
+  margin: 0 auto 1.4rem;
+  max-width: 320px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.welcome__list li {
+  padding: 0.2rem 0 0.2rem 1.4rem;
+  position: relative;
+}
+.welcome__list li::before {
+  content: '●';
+  position: absolute;
+  left: 0;
+  top: 0.2rem;
+  color: var(--bulb-on);
+  font-size: 0.7rem;
+}
+.welcome__list em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--curtain-dark);
+}
+
+/* ============================================
+   Difficulty stars on game cards
+   ============================================ */
+
+.game-card__stars {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--bulb-on);
+  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
+  line-height: 1;
+}
+
+.game-card__stars-dim {
+  color: var(--paper-edge);
 }

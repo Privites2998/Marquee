@@ -196,17 +196,75 @@
   }
 
   // ----- Page chrome helpers -----
+  function currentGameId() {
+    // Derive from URL: /games/<id>/index.html
+    const m = (window.location.pathname || '').match(/\/games\/([^/]+)\//);
+    return m ? m[1] : null;
+  }
+
+  function adjacentGames(currentId) {
+    const idx = GAMES.findIndex(g => g.id === currentId);
+    if (idx < 0) return { prev: null, next: null };
+    const prev = GAMES[(idx - 1 + GAMES.length) % GAMES.length];
+    const next = GAMES[(idx + 1) % GAMES.length];
+    return { prev, next };
+  }
+
   function renderGameHeader(opts) {
     const el = document.querySelector('[data-game-header]');
     if (!el) return;
+    const cur = currentGameId();
+    const { prev, next } = adjacentGames(cur);
+
+    const prevLink = prev
+      ? '<a class="game-nav__adj game-nav__adj--prev" href="../' + prev.id + '/index.html" aria-label="Previous: ' + prev.name + '">' +
+          '<span class="game-nav__arrow">‹</span>' +
+          '<span class="game-nav__adj-name">' + prev.name + '</span>' +
+        '</a>'
+      : '<span></span>';
+
+    const nextLink = next
+      ? '<a class="game-nav__adj game-nav__adj--next" href="../' + next.id + '/index.html" aria-label="Next: ' + next.name + '">' +
+          '<span class="game-nav__adj-name">' + next.name + '</span>' +
+          '<span class="game-nav__arrow">›</span>' +
+        '</a>'
+      : '<span></span>';
+
     el.innerHTML =
-      '<a class="back-link" href="../../index.html">Marquee</a>' +
+      '<div class="game-nav__side game-nav__side--left">' + prevLink + '</div>' +
       '<div class="game-title-wrap">' +
+        '<a class="game-nav__hub" href="../../index.html">Marquee</a>' +
         '<div class="game-title">' + (opts.title || '') + '</div>' +
         '<div class="game-meta">No. ' + (opts.dayNum || dayIndex()) + ' · ' + prettyDate() + '</div>' +
       '</div>' +
-      '<div class="game-nav__right">' + (opts.right || '') + '</div>';
+      '<div class="game-nav__side game-nav__side--right">' + nextLink + '</div>';
   }
+
+  // ----- Difficulty lookup -----
+  // Each game's data file exports an array of puzzles. Each puzzle may have
+  // a `difficulty: 1-3` field. todayDifficulty(gameId) returns that for the
+  // puzzle being shown today. Returns null if the data isn't loaded yet
+  // (e.g., on the hub, we haven't included the per-game data files).
+  function todayDifficulty(gameId) {
+    // Hub doesn't load per-game puzzle data, so we read difficulty from a
+    // small index that lives on this module. Games can register their data
+    // shape; or we duplicate a compact difficulty list here.
+    const idx = DIFFICULTY_INDEX[gameId];
+    if (!idx || !idx.length) return null;
+    return idx[dayIndex() % idx.length] || null;
+  }
+
+  // Compact difficulty index per game — kept in sync with each game's
+  // puzzle data file. Format: array of integers 1..3 in the same order as
+  // the puzzles array.
+  const DIFFICULTY_INDEX = {
+    crossword:   [2, 2, 2, 2, 2, 2, 3],
+    lyric:       [1, 2, 2, 2, 1, 3, 2, 2, 1, 1],
+    connections: [2],
+    actor:       [1, 2, 2, 1, 1, 2, 2, 1],
+    showdown:    [2],
+    spotlight:   [2, 2, 3, 2]
+  };
 
   // ----- Public API -----
   window.Marquee = {
@@ -220,6 +278,7 @@
     saveGameState,
     getStreak,
     todaySummary,
+    todayDifficulty,
     makeRng,
     pickFromList,
     shuffleSeeded,
