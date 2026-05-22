@@ -383,10 +383,10 @@
   const DIFFICULTY_INDEX = {
     crossword:   [2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2],
     lyric:       [1, 2, 2, 2, 1, 3, 2, 2, 1, 1],
-    connections: [2],
+    connections: [2, 3, 3, 2],
     actor:       [1, 2, 2, 1, 1, 2, 2, 1],
-    showdown:    [2],
-    spotlight:   [2, 2, 3, 2]
+    showdown:    [2, 2, 2, 2, 3, 2, 2],
+    spotlight:   [2, 2, 3, 2, 1, 1, 2, 3]
   };
 
   // ----- Title-rank system -----

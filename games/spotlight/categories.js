@@ -127,5 +127,129 @@ window.SpotlightPuzzles = [
         aliases: ["six the musical"]
       }
     ]
+  },
+  {
+    id: 5,
+    category: "Disney on Broadway",
+    clues: [
+      {
+        clue: "Julie Taymor's 1997 stage adaptation of the 1994 animated film about a lion cub destined to rule the Pridelands.",
+        answer: "The Lion King",
+        aliases: ["lion king"]
+      },
+      {
+        clue: "The 1994 stage adaptation that began Disney's Broadway era — 'a tale as old as time.'",
+        answer: "Beauty and the Beast",
+        aliases: ["beauty and the beast"]
+      },
+      {
+        clue: "The 2014 musical adaptation of Disney's 1992 animated film about a street rat with a magic lamp.",
+        answer: "Aladdin",
+        aliases: []
+      },
+      {
+        clue: "The 2018 musical bringing Anna, Elsa, and Arendelle to Broadway.",
+        answer: "Frozen",
+        aliases: []
+      },
+      {
+        clue: "The 2012 musical about turn-of-the-century strike-leading paperboys, adapted from the 1992 Christian Bale film.",
+        answer: "Newsies",
+        aliases: []
+      }
+    ]
+  },
+  {
+    id: 6,
+    category: "One-Word Show Titles",
+    clues: [
+      {
+        clue: "Stephen Schwartz's 2003 musical about the witches of Oz.",
+        answer: "Wicked",
+        aliases: []
+      },
+      {
+        clue: "Lin-Manuel Miranda's 2015 hip-hop musical about a founding father.",
+        answer: "Hamilton",
+        aliases: []
+      },
+      {
+        clue: "T.S. Eliot's poems-turned-musical, opening on Broadway in 1982.",
+        answer: "Cats",
+        aliases: []
+      },
+      {
+        clue: "Bob Fosse's 1975 musical about murderesses on death row in 1920s Illinois.",
+        answer: "Chicago",
+        aliases: []
+      },
+      {
+        clue: "The 1979 Andrew Lloyd Webber musical about Eva Perón.",
+        answer: "Evita",
+        aliases: []
+      }
+    ]
+  },
+  {
+    id: 7,
+    category: "Movie to Musical",
+    clues: [
+      {
+        clue: "John Waters' 1988 film about a Baltimore teen integrating a TV dance show; 2002 musical.",
+        answer: "Hairspray",
+        aliases: []
+      },
+      {
+        clue: "The 2007 musical adapted from the 2001 Reese Witherspoon college comedy about a sorority girl at Harvard Law.",
+        answer: "Legally Blonde",
+        aliases: ["legally blonde the musical"]
+      },
+      {
+        clue: "The 2017 musical based on Tina Fey's 2004 high-school cliques comedy.",
+        answer: "Mean Girls",
+        aliases: []
+      },
+      {
+        clue: "The 2009 Dolly Parton musical based on the 1980 office-revolt comedy.",
+        answer: "9 to 5",
+        aliases: ["nine to five", "9 to 5 the musical"]
+      },
+      {
+        clue: "The 2011 musical version of the 1992 Whoopi Goldberg film about a singer hiding in a convent.",
+        answer: "Sister Act",
+        aliases: []
+      }
+    ]
+  },
+  {
+    id: 8,
+    category: "Pulitzer-Winning Musicals",
+    clues: [
+      {
+        clue: "Marvin Hamlisch's 1975 musical about Broadway audition dancers — 1976 Pulitzer winner.",
+        answer: "A Chorus Line",
+        aliases: ["chorus line"]
+      },
+      {
+        clue: "Sondheim's 1984 musical inspired by a Georges Seurat painting — 1985 Pulitzer winner.",
+        answer: "Sunday in the Park with George",
+        aliases: ["sunday in the park"]
+      },
+      {
+        clue: "Jonathan Larson's 1996 musical about East Village artists — won that year's Pulitzer.",
+        answer: "Rent",
+        aliases: []
+      },
+      {
+        clue: "Tom Kitt and Brian Yorkey's 2009 musical about a mother's bipolar disorder — 2010 Pulitzer winner.",
+        answer: "Next to Normal",
+        aliases: []
+      },
+      {
+        clue: "Lin-Manuel Miranda's 2015 hip-hop musical — 2016 Pulitzer Prize for Drama.",
+        answer: "Hamilton",
+        aliases: []
+      }
+    ]
   }
 ];
