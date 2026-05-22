@@ -108,12 +108,12 @@
     }).join('');
 
     // ----- Suite title (clean sweep) -----
-    const suite = Marquee.suiteTitle();
-    if (suite) {
+    const suiteTitle = Marquee.suiteTitle();
+    if (suiteTitle) {
       const suiteEl = document.querySelector('[data-suite-title]');
-      document.querySelector('[data-suite-title-name]').textContent = suite.name;
+      document.querySelector('[data-suite-title-name]').textContent = suiteTitle.name;
       suiteEl.classList.remove('hidden');
-      suiteEl.dataset.tier = suite.tier;
+      suiteEl.dataset.tier = suiteTitle.tier;
     }
 
     // ----- First-visit welcome -----
