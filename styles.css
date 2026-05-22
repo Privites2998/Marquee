@@ -879,13 +879,20 @@ input { font-family: inherit; }
 .archive-banner__exit:hover { color: var(--bulb-glow); text-decoration: underline; }
 
 /* ============================================
-   Hub: archive link
+   Hub: footer links (archive, stats)
    ============================================ */
 
-.hub-archive-link {
-  display: block;
-  text-align: center;
+.hub-footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
   margin: 1.8rem auto 0;
+  flex-wrap: wrap;
+}
+
+.hub-archive-link {
+  display: inline-block;
+  text-align: center;
   color: var(--bulb-off);
   font-size: 0.72rem;
   letter-spacing: 0.24em;

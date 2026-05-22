@@ -131,7 +131,68 @@
     if (partial.solved && !cur.solved) {
       recordCompletion(gameId);
     }
+    // History log — updated every save (idempotent per date). Keeps the
+    // most recent state for the day so the title reflects final outcome.
+    logHistory(gameId, merged);
     return merged;
+  }
+
+  // ----- Per-day history log -----
+  // Each game keeps an array of { date, dayIndex, solved, title } entries —
+  // one per day played. Used by /stats.html to build aggregate stats.
+  function historyKey(gameId) { return 'history:' + gameId; }
+
+  function logHistory(gameId, state) {
+    const date = isoDate();
+    const tier = (titleFor(gameId, state) || {}).tier || null;
+    const entry = {
+      date,
+      dayIndex: realDayIndex(),
+      solved: !!state.solved,
+      title: tier
+    };
+    const list = storage.get(historyKey(gameId), []);
+    const i = list.findIndex(h => h.date === date);
+    if (i >= 0) list[i] = entry;
+    else list.push(entry);
+    storage.set(historyKey(gameId), list);
+  }
+
+  function getHistory(gameId) {
+    return storage.get(historyKey(gameId), []);
+  }
+
+  function getStats(gameId) {
+    const history = getHistory(gameId);
+    const tierCounts = { ovation: 0, encore: 0, curtainCall: 0, understudy: 0, stageDoor: 0 };
+    let played = history.length;
+    let solved = 0;
+    history.forEach(h => {
+      if (h.solved) solved++;
+      if (h.title && tierCounts.hasOwnProperty(h.title)) tierCounts[h.title]++;
+    });
+    return {
+      played,
+      solved,
+      winRate: played > 0 ? solved / played : null,
+      tierCounts,
+      history
+    };
+  }
+
+  // Backfill: if today's saved state for any game is solved but history
+  // doesn't yet include today (e.g., the player solved before this update
+  // shipped), write today's entry now.
+  function backfillTodayHistory() {
+    if (isArchiveView()) return;
+    const today = isoDate();
+    GAMES.forEach(g => {
+      const state = loadGameState(g.id);
+      if (!state.solved) return;
+      const hist = getHistory(g.id);
+      if (hist.some(h => h.date === today)) return;
+      logHistory(g.id, state);
+    });
   }
 
   // ----- Streak tracking -----
@@ -451,6 +512,9 @@
     suiteTitle,
     realDayIndex,
     isArchiveView,
+    getHistory,
+    getStats,
+    backfillTodayHistory,
     makeRng,
     pickFromList,
     shuffleSeeded,

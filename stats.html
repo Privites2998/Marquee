@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats · Marquee</title>
+<meta name="description" content="Your Marquee stats — across all six daily games.">
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+.stats-shell { max-width: 760px; margin: 0 auto; padding: 1.25rem 1.5rem 4rem; }
+
+.stats-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.8rem 0 1.5rem;
+  border-bottom: 1px solid rgba(244, 236, 216, 0.1);
+  margin-bottom: 1.5rem;
+}
+.stats-head h1 {
+  font-family: var(--font-display);
+  font-size: 1.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--bulb-on);
+}
+
+.stats-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.7rem;
+  margin-bottom: 2rem;
+}
+.stats-tile {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(244, 236, 216, 0.1);
+  border-radius: 3px;
+  padding: 1rem 1.1rem;
+  text-align: center;
+}
+.stats-tile__label {
+  font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--bulb-off);
+  margin-bottom: 0.3rem;
+}
+.stats-tile__value {
+  font-family: var(--font-display);
+  font-size: 2rem; color: var(--bulb-on); font-weight: 700;
+}
+
+.stats-section { margin-bottom: 2rem; }
+.stats-section__title {
+  font-family: var(--font-display);
+  font-size: 0.85rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--bulb-on);
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(244, 196, 48, 0.2);
+}
+
+.stats-game {
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(244, 236, 216, 0.08);
+  border-radius: 4px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 0.8rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.7rem;
+}
+.stats-game__head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  grid-column: 1 / -1;
+  margin-bottom: 0.5rem;
+}
+.stats-game__name {
+  font-family: var(--font-display);
+  font-size: 1.05rem; color: var(--paper);
+  letter-spacing: 0.06em;
+}
+.stats-game__meta {
+  font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--bulb-off);
+}
+
+.stats-counts {
+  display: flex; gap: 1.4rem;
+  flex-wrap: wrap;
+  grid-column: 1 / -1;
+}
+.stats-counts__item {
+  display: flex; flex-direction: column;
+  align-items: flex-start;
+}
+.stats-counts__label {
+  font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--bulb-off);
+}
+.stats-counts__value {
+  font-family: var(--font-display);
+  color: var(--paper);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.stats-tiers {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.4rem;
+  margin-top: 0.7rem;
+}
+.stats-tier {
+  background: rgba(255,255,255,0.04);
+  border-radius: 2px;
+  padding: 0.45rem 0.4rem;
+  text-align: center;
+}
+.stats-tier__name {
+  font-size: 0.55rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--bulb-off);
+  margin-bottom: 0.15rem;
+  line-height: 1.1;
+  min-height: 1.1rem;
+}
+.stats-tier__count {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--paper);
+}
+.stats-tier--ovation     { background: rgba(244, 196, 48, 0.25); }
+.stats-tier--ovation     .stats-tier__count { color: var(--bulb-on); }
+.stats-tier--encore      { background: rgba(244, 196, 48, 0.1); }
+.stats-tier--curtainCall { background: rgba(255,255,255,0.04); }
+.stats-tier--understudy  { background: rgba(196, 77, 77, 0.08); }
+.stats-tier--stageDoor   { background: rgba(0, 0, 0, 0.3); }
+
+.stats-empty {
+  text-align: center;
+  font-style: italic;
+  color: var(--bulb-off);
+  padding: 3rem 1rem;
+}
+
+.stats-foot {
+  text-align: center;
+  font-size: 0.7rem; color: var(--bulb-off);
+  margin-top: 1.5rem;
+  letter-spacing: 0.1em;
+}
+.stats-foot__reset {
+  color: var(--bulb-off);
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 0.4rem;
+  background: none; border: none; font-size: inherit; font-family: inherit;
+  letter-spacing: inherit;
+  padding: 0;
+}
+.stats-foot__reset:hover { color: var(--error); }
+</style>
+</head>
+<body>
+<div class="stats-shell">
+  <header class="stats-head">
+    <a class="back-link" href="index.html">Marquee</a>
+    <h1>Stats</h1>
+    <div style="min-width: 70px"></div>
+  </header>
+
+  <div data-overview class="stats-overview"></div>
+
+  <div class="stats-section">
+    <div class="stats-section__title">By game</div>
+    <div data-games></div>
+  </div>
+
+  <div class="stats-foot">
+    Stats live on this device only.
+    <button class="stats-foot__reset" data-reset>Reset all stats</button>
+  </div>
+</div>
+
+<script src="shared.js"></script>
+<script>
+  (function () {
+    const games = Marquee.GAMES;
+
+    // Backfill — log today's solved games if they aren't in history yet
+    // (handles the case where the player solved before history was added).
+    Marquee.backfillTodayHistory();
+
+    // ----- Overview tiles -----
+    let totalPlayed = 0;
+    let totalSolved = 0;
+    let totalOvations = 0;
+    const allHistory = {};
+    games.forEach(g => {
+      const stats = Marquee.getStats(g.id);
+      allHistory[g.id] = stats;
+      totalPlayed += stats.played;
+      totalSolved += stats.solved;
+      totalOvations += stats.tierCounts.ovation;
+    });
+    const suiteStreak = Marquee.getStreak('suite');
+
+    const overview = document.querySelector('[data-overview]');
+    overview.innerHTML = [
+      ['Plays', totalPlayed],
+      ['Solves', totalSolved],
+      ['Ovations', totalOvations],
+      ['Clean-Sweep Streak', suiteStreak.current],
+      ['Longest', suiteStreak.longest]
+    ].map(([label, value]) =>
+      '<div class="stats-tile">' +
+        '<div class="stats-tile__label">' + label + '</div>' +
+        '<div class="stats-tile__value">' + value + '</div>' +
+      '</div>'
+    ).join('');
+
+    // ----- Per-game breakdown -----
+    const gamesEl = document.querySelector('[data-games]');
+    if (totalPlayed === 0) {
+      gamesEl.innerHTML = '<div class="stats-empty">No plays logged yet — solve a puzzle to start your stats.</div>';
+    } else {
+      const tierOrder = [
+        ['ovation',     'Standing Ovation'],
+        ['encore',      'Encore'],
+        ['curtainCall', 'Curtain Call'],
+        ['understudy',  'Understudy'],
+        ['stageDoor',   'Stage Door']
+      ];
+      gamesEl.innerHTML = games.map(g => {
+        const s = allHistory[g.id];
+        const streak = Marquee.getStreak(g.id);
+        const winPct = s.played > 0 ? Math.round((s.solved / s.played) * 100) + '%' : '—';
+        const tiers = tierOrder.map(([key, name]) =>
+          '<div class="stats-tier stats-tier--' + key + '">' +
+            '<div class="stats-tier__name">' + name + '</div>' +
+            '<div class="stats-tier__count">' + s.tierCounts[key] + '</div>' +
+          '</div>'
+        ).join('');
+        return (
+          '<div class="stats-game">' +
+            '<div class="stats-game__head">' +
+              '<div class="stats-game__name">' + g.name + '</div>' +
+              '<div class="stats-game__meta">' + s.played + ' play' + (s.played === 1 ? '' : 's') + '</div>' +
+            '</div>' +
+            '<div class="stats-counts">' +
+              '<div class="stats-counts__item">' +
+                '<div class="stats-counts__label">Solved</div>' +
+                '<div class="stats-counts__value">' + s.solved + ' (' + winPct + ')</div>' +
+              '</div>' +
+              '<div class="stats-counts__item">' +
+                '<div class="stats-counts__label">Current streak</div>' +
+                '<div class="stats-counts__value">' + streak.current + '</div>' +
+              '</div>' +
+              '<div class="stats-counts__item">' +
+                '<div class="stats-counts__label">Longest streak</div>' +
+                '<div class="stats-counts__value">' + streak.longest + '</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="stats-tiers">' + tiers + '</div>' +
+          '</div>'
+        );
+      }).join('');
+    }
+
+    // ----- Reset -----
+    document.querySelector('[data-reset]').addEventListener('click', () => {
+      if (!confirm('Reset all stats and streaks? This clears your history on this device. Your saved games for today remain.')) return;
+      games.forEach(g => {
+        Marquee.storage.remove('history:' + g.id);
+        Marquee.storage.remove('streak:' + g.id);
+      });
+      Marquee.storage.remove('streak:suite');
+      window.location.reload();
+    });
+  })();
+</script>
+</body>
+</html>
