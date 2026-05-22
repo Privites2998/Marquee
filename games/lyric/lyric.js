@@ -214,10 +214,14 @@
     const songGuesses = state.song.guesses.length;
     const totalReveals = state.show.revealed.length + state.song.revealed.length;
 
+    const title = Marquee.titleFor('lyric', Marquee.loadGameState('lyric'));
+    const badgeHtml = title ? '<div class="result__badge result__badge--' + title.tier + '">' + title.name + '</div>' : '';
+
     res.innerHTML =
       '<div class="result">' +
         '<div class="bulbs" style="margin: 0 auto 1rem; max-width: 240px"></div>' +
         '<div class="result__title">Curtain call.</div>' +
+        badgeHtml +
         '<div class="result__sub">' + (puzzle.note || '') + '</div>' +
         '<div class="result__sub" style="margin-top:0.5rem">' +
           showGuesses + ' guess' + (showGuesses === 1 ? '' : 'es') + ' on the show · ' +
@@ -230,9 +234,10 @@
       '</div>';
 
     const shareLines = [
+      title ? '✦ ' + title.name : null,
       '🎭 Show: ' + dots(showGuesses) + (totalRevealsForStage('show') ? ' (+' + totalRevealsForStage('show') + ' 💡)' : ''),
       '🎵 Song: ' + dots(songGuesses) + (totalRevealsForStage('song') ? ' (+' + totalRevealsForStage('song') + ' 💡)' : '')
-    ];
+    ].filter(Boolean);
     const shareTxt = Marquee.shareText('Lyric', dayNum, shareLines);
     res.querySelector('[data-share]').textContent = shareTxt;
     res.querySelector('[data-share-btn]').addEventListener('click', async (e) => {

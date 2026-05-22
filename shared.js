@@ -266,6 +266,112 @@
     spotlight:   [2, 2, 3, 2]
   };
 
+  // ----- Title-rank system -----
+  // Each game returns one of these tier keys based on the player's saved
+  // state. Lower-index = higher tier.
+  const TIER_NAMES = {
+    ovation:     'Standing Ovation',
+    encore:      'Encore',
+    curtainCall: 'Curtain Call',
+    understudy:  'Understudy',
+    stageDoor:   'Stage Door'
+  };
+
+  // Map of gameId → fn(state) → tier key
+  const TITLE_RULES = {
+    crossword: (s) => {
+      if (!s.solved) return null;
+      const reveals = (s.revealed && s.revealed.length) || s.revealedCount || 0;
+      if (reveals === 0) return 'ovation';
+      if (reveals <= 2) return 'encore';
+      if (reveals <= 5) return 'curtainCall';
+      return 'understudy';
+    },
+    lyric: (s) => {
+      if (!s.solved) return null;
+      const sg = (s.show && s.show.guesses && s.show.guesses.length) || 0;
+      const ng = (s.song && s.song.guesses && s.song.guesses.length) || 0;
+      const sr = (s.show && s.show.revealed && s.show.revealed.length) || 0;
+      const nr = (s.song && s.song.revealed && s.song.revealed.length) || 0;
+      const total = sg + ng + sr + nr;
+      if (total <= 2) return 'ovation';
+      if (total <= 4) return 'encore';
+      if (total <= 7) return 'curtainCall';
+      if (total <= 10) return 'understudy';
+      return 'stageDoor';
+    },
+    connections: (s) => {
+      if (!s.cells) return null;
+      const filled = s.cells.filter(c => c && c.actor).length;
+      if (filled === 9 && !s.gaveUp) return 'ovation';
+      if (filled >= 7) return 'encore';
+      if (filled >= 5) return 'curtainCall';
+      if (filled >= 3) return 'understudy';
+      return 'stageDoor';
+    },
+    actor: (s) => {
+      if (s.gaveUp || !s.solved) return s.gaveUp ? 'stageDoor' : null;
+      const g = (s.guesses && s.guesses.length) || 0;
+      if (g === 1) return 'ovation';
+      if (g === 2) return 'encore';
+      if (g === 3) return 'curtainCall';
+      if (g === 4) return 'understudy';
+      return 'stageDoor';
+    },
+    showdown: (s) => {
+      if (!s.picks || s.picks.length < 5) return null;
+      const correct = s.picks.filter(p => p.correct).length;
+      if (correct === 5) return 'ovation';
+      if (correct === 4) return 'encore';
+      if (correct === 3) return 'curtainCall';
+      if (correct >= 1) return 'understudy';
+      return 'stageDoor';
+    },
+    spotlight: (s) => {
+      if (!s.clues) return null;
+      const correct = s.clues.filter(c => c.status === 'correct').length;
+      const firstTry = s.clues.filter(c => c.status === 'correct' && c.attempts === 1).length;
+      const resolved = s.clues.every(c => c.status !== 'pending');
+      if (!resolved) return null;
+      if (correct === 5 && firstTry === 5) return 'ovation';
+      if (correct === 5) return 'encore';
+      if (correct === 4) return 'curtainCall';
+      if (correct >= 2) return 'understudy';
+      return 'stageDoor';
+    }
+  };
+
+  function titleFor(gameId, state) {
+    const fn = TITLE_RULES[gameId];
+    if (!fn) return null;
+    const tier = fn(state || loadGameState(gameId));
+    if (!tier) return null;
+    return { tier, name: TIER_NAMES[tier] };
+  }
+
+  // Suite-wide title for the day: requires all 6 games solved.
+  // Counts how many games earned an Ovation.
+  function suiteTitle() {
+    const states = todaySummary().states;
+    let solvedCount = 0;
+    let ovations = 0;
+    let encoresOrBetter = 0;
+    GAMES.forEach(g => {
+      const s = states[g.id];
+      if (!s || !s.solved) return;
+      solvedCount++;
+      const t = titleFor(g.id, s);
+      if (!t) return;
+      if (t.tier === 'ovation') { ovations++; encoresOrBetter++; }
+      else if (t.tier === 'encore') { encoresOrBetter++; }
+    });
+    if (solvedCount < GAMES.length) return null;
+    if (ovations === GAMES.length) return { tier: 'tony', name: 'Tony Winner' };
+    if (ovations >= 4)              return { tier: 'lead', name: 'Lead Role' };
+    if (encoresOrBetter >= 4)       return { tier: 'featured', name: 'Featured Player' };
+    return { tier: 'ensemble', name: 'Ensemble' };
+  }
+
   // ----- Public API -----
   window.Marquee = {
     GAMES,
@@ -279,6 +385,8 @@
     getStreak,
     todaySummary,
     todayDifficulty,
+    titleFor,
+    suiteTitle,
     makeRng,
     pickFromList,
     shuffleSeeded,

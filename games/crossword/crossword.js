@@ -341,17 +341,21 @@
     const streak = Marquee.getStreak('crossword');
     const revealedCount = revealedSet.size;
     const score = revealedCount === 0 ? 'Solo solve' : revealedCount + ' revealed';
+    const title = Marquee.titleFor('crossword', Marquee.loadGameState('crossword'));
+    const badgeHtml = title ? '<div class="result__badge result__badge--' + title.tier + '">' + title.name + '</div>' : '';
     res.innerHTML =
       '<div class="result">' +
         '<div class="bulbs" style="margin: 0 auto 1rem; max-width: 240px"></div>' +
         '<div class="result__title">Solved!</div>' +
+        badgeHtml +
         '<div class="result__sub">' + score + ' · ' + streak.current + '-day streak</div>' +
         '<div class="result__share-text" data-share></div>' +
         '<button class="btn btn--sm" data-share-btn>Copy result</button>' +
       '</div>';
     const shareLines = [
+      title ? '✦ ' + title.name : null,
       '⬜ ' + (revealedCount === 0 ? 'Clean grid' : revealedCount + ' assist' + (revealedCount === 1 ? '' : 's'))
-    ];
+    ].filter(Boolean);
     const shareTxt = Marquee.shareText('Mini Crossword', dayNum, shareLines);
     res.querySelector('[data-share]').textContent = shareTxt;
     res.querySelector('[data-share-btn]').addEventListener('click', async (e) => {

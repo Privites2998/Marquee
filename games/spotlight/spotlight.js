@@ -176,19 +176,24 @@
       return '❌';
     }).join('');
 
+    const title = Marquee.titleFor('spotlight', Marquee.loadGameState('spotlight'));
+    const badgeHtml = title ? '<div class="result__badge result__badge--' + title.tier + '">' + title.name + '</div>' : '';
+
     res.innerHTML =
       '<div class="result" style="margin-top: 1.4rem">' +
         '<div class="bulbs" style="margin: 0 auto 1rem; max-width: 240px"></div>' +
         '<div class="result__title">' + headline + '</div>' +
+        badgeHtml +
         '<div class="result__sub">' + sub + '</div>' +
         '<div class="result__share-text" data-share></div>' +
         '<button class="btn btn--sm" data-share-btn>Copy result</button>' +
       '</div>';
 
     const shareTxt = Marquee.shareText('Spotlight', dayNum, [
+      title ? '✦ ' + title.name : null,
       puzzle.category,
       slots
-    ]);
+    ].filter(Boolean));
     res.querySelector('[data-share]').textContent = shareTxt;
     res.querySelector('[data-share-btn]').addEventListener('click', async (e) => {
       const ok = await Marquee.copyToClipboard(shareTxt);

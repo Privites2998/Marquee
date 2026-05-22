@@ -302,19 +302,25 @@
       }
       emoji.push(row);
     }
+    const title = Marquee.titleFor('connections', Marquee.loadGameState('connections'));
+    const badgeHtml = title ? '<div class="result__badge result__badge--' + title.tier + '">' + title.name + '</div>' : '';
+
     res.innerHTML =
       '<div class="result">' +
         '<div class="bulbs" style="margin: 0 auto 1rem; max-width: 240px"></div>' +
         '<div class="result__title">' + headline + '</div>' +
+        badgeHtml +
         '<div class="result__sub">' + subline + '</div>' +
         '<div class="result__share-text" data-share></div>' +
         '<button class="btn btn--sm" data-share-btn>Copy result</button>' +
       '</div>';
 
-    const shareTxt = Marquee.shareText('Connections', dayNum, [
+    const shareLines = [
+      title ? '✦ ' + title.name : null,
       filled + '/9 · ' + state.guesses + (state.guesses === 1 ? ' guess' : ' guesses'),
       ''
-    ].concat(emoji));
+    ].filter(l => l !== null).concat(emoji);
+    const shareTxt = Marquee.shareText('Connections', dayNum, shareLines);
     res.querySelector('[data-share]').textContent = shareTxt;
     res.querySelector('[data-share-btn]').addEventListener('click', async (e) => {
       const ok = await Marquee.copyToClipboard(shareTxt);

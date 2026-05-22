@@ -157,16 +157,23 @@
 
     const slots = state.picks.map(p => p.correct ? '✅' : '❌').join('');
 
+    const title = Marquee.titleFor('showdown', Marquee.loadGameState('showdown'));
+    const badgeHtml = title ? '<div class="result__badge result__badge--' + title.tier + '">' + title.name + '</div>' : '';
+
     resultEl.innerHTML =
       '<div class="result">' +
         '<div class="bulbs" style="margin: 0 auto 1rem; max-width: 240px"></div>' +
         '<div class="result__title">' + headline + '</div>' +
+        badgeHtml +
         '<div class="result__sub">' + sub + '</div>' +
         '<div class="result__share-text" data-share></div>' +
         '<button class="btn btn--sm" data-share-btn>Copy result</button>' +
       '</div>';
 
-    const shareTxt = Marquee.shareText('Showdown', dayNum, [slots]);
+    const shareTxt = Marquee.shareText('Showdown', dayNum, [
+      title ? '✦ ' + title.name : null,
+      slots
+    ].filter(Boolean));
     resultEl.querySelector('[data-share]').textContent = shareTxt;
     resultEl.querySelector('[data-share-btn]').addEventListener('click', async (e) => {
       const ok = await Marquee.copyToClipboard(shareTxt);

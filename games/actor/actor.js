@@ -156,10 +156,14 @@
         ' · ' + streak.current + '-day streak'
       : 'Answer was ' + puzzle.name + '.';
 
+    const title = Marquee.titleFor('actor', Marquee.loadGameState('actor'));
+    const badgeHtml = title ? '<div class="result__badge result__badge--' + title.tier + '">' + title.name + '</div>' : '';
+
     res.innerHTML =
       '<div class="result">' +
         '<div class="bulbs" style="margin: 0 auto 1rem; max-width: 240px"></div>' +
         '<div class="result__title">' + headline + '</div>' +
+        badgeHtml +
         '<div class="result__sub">' + sub + '</div>' +
         '<div class="result__share-text" data-share></div>' +
         '<button class="btn btn--sm" data-share-btn>Copy result</button>' +
@@ -174,9 +178,10 @@
     else if (state.gaveUp) slots.push('❌');
 
     const shareTxt = Marquee.shareText('Name the Actor', dayNum, [
+      title ? '✦ ' + title.name : null,
       slots.join(''),
       wrongCount + ' wrong · ' + state.revealed + ' revealed'
-    ]);
+    ].filter(Boolean));
     res.querySelector('[data-share]').textContent = shareTxt;
     res.querySelector('[data-share-btn]').addEventListener('click', async (e) => {
       const ok = await Marquee.copyToClipboard(shareTxt);

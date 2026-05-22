@@ -586,6 +586,27 @@ input { font-family: inherit; }
   margin-bottom: 0.4rem;
 }
 
+.result__badge {
+  display: inline-block;
+  padding: 0.35rem 1.1rem;
+  margin: 0.2rem 0 0.8rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border-radius: 99px;
+  background: var(--paper-shadow);
+  color: var(--ink);
+  font-weight: 700;
+  border: 1.5px solid transparent;
+}
+
+.result__badge--ovation     { background: var(--bulb-on); color: var(--curtain-dark); border-color: var(--bulb-glow); box-shadow: var(--shadow-bulb); }
+.result__badge--encore      { background: rgba(244, 196, 48, 0.32); color: var(--curtain-dark); border-color: rgba(244, 196, 48, 0.55); }
+.result__badge--curtainCall { background: var(--paper-shadow); color: var(--ink); border-color: var(--paper-edge); }
+.result__badge--understudy  { background: rgba(196, 77, 77, 0.12); color: #7a2828; border-color: rgba(196, 77, 77, 0.3); }
+.result__badge--stageDoor   { background: rgba(0,0,0,0.08); color: var(--ink-muted); border-color: rgba(0,0,0,0.12); }
+
 .result__sub {
   color: var(--ink-muted);
   font-size: 0.92rem;
@@ -747,3 +768,66 @@ input { font-family: inherit; }
 .game-card__stars-dim {
   color: var(--paper-edge);
 }
+
+/* ============================================
+   Title-rank chip on solved game cards
+   ============================================ */
+
+.game-card__title {
+  display: inline-block;
+  margin: 0.55rem 0 0;
+  padding: 0.2rem 0.65rem;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border-radius: 99px;
+  background: var(--paper-shadow);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.game-card__title--ovation     { background: var(--bulb-on); color: var(--curtain-dark); }
+.game-card__title--encore      { background: rgba(244, 196, 48, 0.45); color: var(--curtain-dark); }
+.game-card__title--curtainCall { background: var(--paper-shadow); color: var(--ink); }
+.game-card__title--understudy  { background: rgba(196, 77, 77, 0.18); color: #7a2828; }
+.game-card__title--stageDoor   { background: rgba(0,0,0,0.1); color: var(--ink-muted); }
+
+/* ============================================
+   Suite title (clean-sweep banner)
+   ============================================ */
+
+.suite-title {
+  background: linear-gradient(180deg, rgba(244, 196, 48, 0.18), rgba(244, 196, 48, 0.06));
+  border: 1.5px solid var(--bulb-on);
+  border-radius: 4px;
+  padding: 1rem 1.4rem;
+  text-align: center;
+  margin: 0.4rem auto 2rem;
+  max-width: 540px;
+  box-shadow: var(--shadow-bulb);
+}
+
+.suite-title__label {
+  font-size: 0.6rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--bulb-off);
+  margin-bottom: 0.25rem;
+}
+
+.suite-title__name {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--bulb-on);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-shadow: 0 0 14px rgba(244, 196, 48, 0.35);
+}
+
+.suite-title[data-tier="tony"] {
+  background: linear-gradient(180deg, var(--bulb-on), rgba(244, 196, 48, 0.5));
+}
+.suite-title[data-tier="tony"] .suite-title__name { color: var(--curtain-dark); text-shadow: none; }
+.suite-title[data-tier="tony"] .suite-title__label { color: var(--curtain-dark); opacity: 0.7; }
