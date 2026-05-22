@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archive · Marquee</title>
+<meta name="description" content="Replay past days of Marquee puzzles.">
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+.archive-shell {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem 4rem;
+}
+.archive-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 0 1.5rem;
+  border-bottom: 1px solid rgba(244, 236, 216, 0.1);
+  margin-bottom: 1.5rem;
+}
+.archive-head h1 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bulb-on);
+}
+.archive-intro {
+  font-size: 0.88rem;
+  color: var(--bulb-off);
+  margin-bottom: 1.5rem;
+  line-height: 1.55;
+  font-style: italic;
+  text-align: center;
+}
+.archive-day {
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(244, 236, 216, 0.08);
+  border-radius: 4px;
+  padding: 1rem 1.2rem 1.1rem;
+  margin-bottom: 1rem;
+}
+.archive-day__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.7rem;
+  gap: 1rem;
+}
+.archive-day__date {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--paper);
+  letter-spacing: 0.04em;
+}
+.archive-day__meta {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bulb-off);
+}
+.archive-day__games {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.5rem;
+}
+.archive-tile {
+  display: block;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0.55rem 0.7rem;
+  border-radius: 3px;
+  font-size: 0.82rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform 0.12s, box-shadow 0.12s;
+  border-left: 3px solid var(--bulb-on);
+}
+.archive-tile:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-soft);
+}
+.archive-tile__name {
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  display: block;
+}
+.archive-tile__diff {
+  font-size: 0.65rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.1em;
+  margin-top: 0.15rem;
+}
+.archive-empty {
+  text-align: center;
+  font-style: italic;
+  color: var(--bulb-off);
+  padding: 3rem 1rem;
+}
+</style>
+</head>
+<body>
+<div class="archive-shell">
+  <header class="archive-head">
+    <a class="back-link" href="index.html">Marquee</a>
+    <h1>Archive</h1>
+    <div style="min-width: 70px"></div>
+  </header>
+
+  <p class="archive-intro">
+    Replay puzzles from earlier days. Archive plays are ephemeral —
+    they don't update your streaks, save progress, or affect today.
+  </p>
+
+  <div data-archive-list></div>
+</div>
+
+<script src="shared.js"></script>
+<script>
+  (function () {
+    const today = Marquee.realDayIndex();
+    const MAX_DAYS = 30;
+    const list = document.querySelector('[data-archive-list]');
+
+    if (today < 1) {
+      list.innerHTML = '<div class="archive-empty">No past days yet — Marquee just opened the doors.</div>';
+      return;
+    }
+
+    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+    function dateFor(offsetFromToday) {
+      const d = Marquee.todayLocal();
+      return new Date(d.getFullYear(), d.getMonth(), d.getDate() + offsetFromToday);
+    }
+
+    function pretty(d) {
+      return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+    }
+
+    let html = '';
+    const startDay = today - 1;
+    const endDay = Math.max(0, today - MAX_DAYS);
+    for (let d = startDay; d >= endDay; d--) {
+      const offset = d - today;
+      const dt = dateFor(offset);
+      const dayLabel = d === today - 1 ? 'Yesterday' : pretty(dt);
+      html +=
+        '<div class="archive-day">' +
+          '<div class="archive-day__head">' +
+            '<div class="archive-day__date">' + dayLabel + '</div>' +
+            '<div class="archive-day__meta">Day ' + d + '</div>' +
+          '</div>' +
+          '<div class="archive-day__games">' +
+            Marquee.GAMES.map(g => {
+              const href = 'games/' + g.id + '/index.html?day=' + d;
+              return '<a class="archive-tile" href="' + href + '">' +
+                       '<span class="archive-tile__name">' + g.name + '</span>' +
+                       '<span class="archive-tile__diff">' + g.emoji + '</span>' +
+                     '</a>';
+            }).join('') +
+          '</div>' +
+        '</div>';
+    }
+    list.innerHTML = html;
+  })();
+</script>
+</body>
+</html>

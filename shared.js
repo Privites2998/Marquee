@@ -24,10 +24,16 @@
     return new Date(now.getFullYear(), now.getMonth(), now.getDate());
   }
 
+  function realDayIndex() {
+    // The true current day, ignoring any URL overrides. Used to detect
+    // archive playback.
+    const ms = todayLocal().getTime() - EPOCH.getTime();
+    return Math.floor(ms / 86400000);
+  }
+
   function dayIndex(date) {
     // URL override: ?day=N forces a specific day index. Used by the preview
-    // tool to load any puzzle. Harmless for regular users; worst case they
-    // play tomorrow's puzzle a day early.
+    // tool and the archive page.
     if (typeof window !== 'undefined' && window.location && window.location.search) {
       try {
         const params = new URLSearchParams(window.location.search);
@@ -41,6 +47,21 @@
     const d = date || todayLocal();
     const ms = d.getTime() - EPOCH.getTime();
     return Math.floor(ms / 86400000);
+  }
+
+  // Archive mode = the URL is forcing a different day than today's real day.
+  // In this mode we don't persist progress or bump streaks — the play is
+  // ephemeral so it can't corrupt the user's real saved state.
+  function isArchiveView() {
+    if (typeof window === 'undefined') return false;
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const override = params.get('day');
+      if (override === null || override === '') return false;
+      const n = parseInt(override, 10);
+      if (Number.isNaN(n)) return false;
+      return n !== realDayIndex();
+    } catch (_) { return false; }
   }
 
   function isoDate(date) {
@@ -81,6 +102,12 @@
   function gameKey(gameId) { return 'game:' + gameId; }
 
   function loadGameState(gameId) {
+    // In archive mode, we never restore persisted state — every load returns
+    // a fresh empty state so past-day plays don't see today's actual progress
+    // and vice versa.
+    if (isArchiveView()) {
+      return { date: isoDate(), solved: false, archive: true };
+    }
     const today = isoDate();
     const s = storage.get(gameKey(gameId));
     if (!s || s.date !== today) {
@@ -93,8 +120,14 @@
     const today = isoDate();
     const cur = loadGameState(gameId);
     const merged = Object.assign({}, cur, partial, { date: today });
-    storage.set(gameKey(gameId), merged);
 
+    // Archive mode: ephemeral play — never persist or bump streaks.
+    if (isArchiveView()) {
+      merged.archive = true;
+      return merged;
+    }
+
+    storage.set(gameKey(gameId), merged);
     if (partial.solved && !cur.solved) {
       recordCompletion(gameId);
     }
@@ -216,15 +249,18 @@
     const cur = currentGameId();
     const { prev, next } = adjacentGames(cur);
 
+    // Preserve archive day param when navigating between games
+    const archiveQuery = isArchiveView() ? '?day=' + dayIndex() : '';
+
     const prevLink = prev
-      ? '<a class="game-nav__adj game-nav__adj--prev" href="../' + prev.id + '/index.html" aria-label="Previous: ' + prev.name + '">' +
+      ? '<a class="game-nav__adj game-nav__adj--prev" href="../' + prev.id + '/index.html' + archiveQuery + '" aria-label="Previous: ' + prev.name + '">' +
           '<span class="game-nav__arrow">‹</span>' +
           '<span class="game-nav__adj-name">' + prev.name + '</span>' +
         '</a>'
       : '<span></span>';
 
     const nextLink = next
-      ? '<a class="game-nav__adj game-nav__adj--next" href="../' + next.id + '/index.html" aria-label="Next: ' + next.name + '">' +
+      ? '<a class="game-nav__adj game-nav__adj--next" href="../' + next.id + '/index.html' + archiveQuery + '" aria-label="Next: ' + next.name + '">' +
           '<span class="game-nav__adj-name">' + next.name + '</span>' +
           '<span class="game-nav__arrow">›</span>' +
         '</a>'
@@ -235,9 +271,35 @@
       '<div class="game-title-wrap">' +
         '<a class="game-nav__hub" href="../../index.html">Marquee</a>' +
         '<div class="game-title">' + (opts.title || '') + '</div>' +
-        '<div class="game-meta">No. ' + (opts.dayNum || dayIndex()) + ' · ' + prettyDate() + '</div>' +
+        '<div class="game-meta">No. ' + (opts.dayNum || dayIndex()) + ' · ' + prettyDate(archiveDate()) + '</div>' +
       '</div>' +
       '<div class="game-nav__side game-nav__side--right">' + nextLink + '</div>';
+
+    // Archive banner — inserted into a sibling slot if present, else as a
+    // sibling div before the surface.
+    if (isArchiveView()) {
+      let banner = document.querySelector('[data-archive-banner]');
+      if (!banner) {
+        banner = document.createElement('div');
+        banner.setAttribute('data-archive-banner', '');
+        banner.className = 'archive-banner';
+        const parent = el.parentNode;
+        if (parent) parent.insertBefore(banner, el.nextSibling);
+      }
+      banner.innerHTML =
+        '<span class="archive-banner__pill">Archive</span>' +
+        '<span class="archive-banner__text">Replaying day ' + dayIndex() + '. Progress won\'t affect your streaks.</span>' +
+        '<a class="archive-banner__exit" href="../../archive.html">All days</a>';
+    }
+  }
+
+  // The date shown in the game header. In archive mode this is the historical
+  // date for the puzzle being played; otherwise it's today.
+  function archiveDate() {
+    if (!isArchiveView()) return undefined;
+    const offset = dayIndex() - realDayIndex();
+    const d = todayLocal();
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate() + offset);
   }
 
   // ----- Difficulty lookup -----
@@ -387,6 +449,8 @@
     todayDifficulty,
     titleFor,
     suiteTitle,
+    realDayIndex,
+    isArchiveView,
     makeRng,
     pickFromList,
     shuffleSeeded,
