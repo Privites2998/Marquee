@@ -381,7 +381,7 @@
   // puzzle data file. Format: array of integers 1..3 in the same order as
   // the puzzles array.
   const DIFFICULTY_INDEX = {
-    crossword:   [2, 2, 2, 2, 2, 2, 3],
+    crossword:   [2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2],
     lyric:       [1, 2, 2, 2, 1, 3, 2, 2, 1, 1],
     connections: [2],
     actor:       [1, 2, 2, 1, 1, 2, 2, 1],

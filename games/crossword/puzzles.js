@@ -197,5 +197,194 @@ window.CrosswordPuzzles = [
         5: "Discourage; turn away"
       }
     }
+  },
+  {
+    id: 8,
+    title: "Set Change",
+    grid: [
+      "SLUGS",
+      "TITLE",
+      "ALIEN",
+      "GALAS",
+      "SCENE"
+    ],
+    clues: {
+      across: {
+        1: "Garden pests, or punches in a stage fight",
+        6: "What the marquee announces",
+        7: "Sigourney Weaver foe; also a 'Strange Loop' theme",
+        8: "Opening-night fundraising events",
+        9: "Each blackout-bounded unit of a play"
+      },
+      down: {
+        1: "Bachelor parties (or male deer)",
+        2: "Pale-purple bloom",
+        3: "Useful, archaic",
+        4: "Pick up, harvest-style",
+        5: "What audiences make of a Beckett play, hopefully"
+      }
+    }
+  },
+  {
+    id: 9,
+    title: "Aisle Seat",
+    grid: [
+      "SCABS",
+      "CHILE",
+      "RISEN",
+      "IDLED",
+      "PEEPS"
+    ],
+    clues: {
+      across: {
+        1: "Healing scrapes",
+        6: "South American country with a famously long coast",
+        7: "What the curtain has, at 8:01",
+        8: "Sat with the engine running",
+        9: "Marshmallow chicks; or small chick sounds"
+      },
+      down: {
+        1: "Bit of writing; theater token",
+        2: "Scold mildly",
+        3: "Best seat for an easy exit",
+        4: "What censors do to expletives",
+        5: "Dispatches, as flowers to a dressing room"
+      }
+    }
+  },
+  {
+    id: 10,
+    title: "Pipe Organ",
+    grid: [
+      "SCABS",
+      "CANOE",
+      "ORGAN",
+      "OVERS",
+      "TERSE"
+    ],
+    clues: {
+      across: {
+        1: "Wound coverings",
+        6: "Single-paddle watercraft",
+        7: "Phantom's instrument of choice; also a body part",
+        8: "Cricket bowling stints, broadly",
+        9: "Curt; minimal Pinter dialogue"
+      },
+      down: {
+        1: "Move quickly aside",
+        2: "Turkey-day verb",
+        3: "An 'Inside Out' emotion",
+        4: "Tusked pigs",
+        5: "Common ___; one of five"
+      }
+    }
+  },
+  {
+    id: 11,
+    title: "Press Night",
+    grid: [
+      "LAPSE",
+      "ARENA",
+      "SONAR",
+      "EMAIL",
+      "RALLY"
+    ],
+    clues: {
+      across: {
+        1: "Subscription expiry",
+        6: "Stadium-style theater (e.g., Circle in the Square)",
+        7: "Echolocation system",
+        8: "Modern equivalent of a fan letter",
+        9: "Political assembly; or a comeback"
+      },
+      down: {
+        1: "Focused light beam",
+        2: "Smell of fresh-baked bread",
+        3: "Pertaining to punishment",
+        4: "Slow-moving mollusk",
+        5: "Punctuality, posh"
+      }
+    }
+  },
+  {
+    id: 12,
+    title: "Read-Through",
+    grid: [
+      "LAPSE",
+      "ALOUD",
+      "DOING",
+      "ENSUE",
+      "DEEPS"
+    ],
+    clues: {
+      across: {
+        1: "Brief slip",
+        6: "How a script first gets voiced at rehearsal",
+        7: "Currently performing (gerund)",
+        8: "Follow as a result",
+        9: "Ocean depths, poetically"
+      },
+      down: {
+        1: "Loaded down (archaic)",
+        2: "By oneself; the soloist's pre-curtain state",
+        3: "Composed bearing on stage",
+        4: "Dawn, casually",
+        5: "Sharpens (a knife)"
+      }
+    }
+  },
+  {
+    id: 13,
+    title: "Out of Town",
+    grid: [
+      "TRIPS",
+      "RURAL",
+      "ADAGE",
+      "METED",
+      "PRESS"
+    ],
+    clues: {
+      across: {
+        1: "Stumbles; or vacations",
+        6: "Country, not city",
+        7: "Old saying",
+        8: "Dispensed (justice)",
+        9: "The fourth estate"
+      },
+      down: {
+        1: "Drifter, or a heavy step",
+        2: "More impolite",
+        3: "Furious",
+        4: "Squires-in-training; or what a script has",
+        5: "Snowy hill rides"
+      }
+    }
+  },
+  {
+    id: 14,
+    title: "Off-Book",
+    grid: [
+      "SLUGS",
+      "TONAL",
+      "ANIME",
+      "METED",
+      "PREYS"
+    ],
+    clues: {
+      across: {
+        1: "Punches, slangily",
+        6: "Pertaining to musical tone or key",
+        7: "Japanese animation style",
+        8: "Doled out, as punishment",
+        9: "Hunts (homophone of 'prays')"
+      },
+      down: {
+        1: "Postal sticker; or a foot-strike",
+        2: "Solitary type; the Phantom, broadly",
+        3: "Bring together, as a cast",
+        4: "Wild-tasting, said of meat",
+        5: "Winter rides"
+      }
+    }
   }
 ];
