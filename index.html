@@ -106,6 +106,7 @@
         '</a>'
       );
     }).join('');
+    if (!grid.children.length) console.warn('[Marquee] game-grid rendered empty — check Marquee.GAMES and shared.js');
 
     // ----- Suite title (clean sweep) -----
     const suiteTitle = Marquee.suiteTitle();
