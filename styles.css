@@ -275,6 +275,15 @@ input { font-family: inherit; }
   box-shadow: var(--shadow-bulb);
 }
 
+.game-card.is-solved::before {
+  animation: solve-cascade 0.7s ease-out forwards;
+}
+
+@keyframes solve-cascade {
+  0%   { background: linear-gradient(90deg, var(--bulb-on) 0%, var(--curtain-dark) 0%); }
+  100% { background: linear-gradient(90deg, var(--bulb-on) 100%, var(--curtain-dark) 100%); }
+}
+
 .game-card.is-solved::after {
   content: '';
   position: absolute;
