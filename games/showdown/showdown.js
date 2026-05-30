@@ -170,6 +170,9 @@
         '<button class="btn btn--sm" data-share-btn>Copy result</button>' +
       '</div>';
 
+    Marquee.flourishResult('showdown');
+
+
     const shareTxt = Marquee.shareText('Showdown', dayNum, [
       title ? '✦ ' + title.name : null,
       slots

@@ -177,6 +177,9 @@
     if (state.solved) slots.push('✅');
     else if (state.gaveUp) slots.push('❌');
 
+    Marquee.flourishResult('actor');
+
+
     const shareTxt = Marquee.shareText('Name the Actor', dayNum, [
       title ? '✦ ' + title.name : null,
       slots.join(''),

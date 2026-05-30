@@ -586,6 +586,32 @@ input { font-family: inherit; }
 .result {
   text-align: center;
   padding: 1.5rem 0 0.5rem;
+  animation: result-rise 0.45s ease-out both;
+}
+
+/* Solve flourish: a gold marquee-light sweep across the result panel on a win.
+   Added by Marquee.flourishResult() via the .is-won class. Purely cosmetic. */
+.result.is-won {
+  position: relative;
+  overflow: hidden;
+}
+.result.is-won::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 38%, rgba(244, 196, 48, 0.40) 50%, transparent 62%);
+  background-size: 250% 100%;
+  animation: result-sweep 0.85s ease-out 0.15s both;
+}
+
+@keyframes result-rise {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes result-sweep {
+  from { background-position: 130% 0; }
+  to   { background-position: -130% 0; }
 }
 
 .result__title {

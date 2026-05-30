@@ -356,6 +356,8 @@
       title ? '✦ ' + title.name : null,
       '⬜ ' + (revealedCount === 0 ? 'Clean grid' : revealedCount + ' assist' + (revealedCount === 1 ? '' : 's'))
     ].filter(Boolean);
+    Marquee.flourishResult('crossword');
+
     const shareTxt = Marquee.shareText('Mini Crossword', dayNum, shareLines);
     res.querySelector('[data-share]').textContent = shareTxt;
     res.querySelector('[data-share-btn]').addEventListener('click', async (e) => {

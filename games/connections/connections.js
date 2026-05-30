@@ -320,6 +320,8 @@
       filled + '/9 · ' + state.guesses + (state.guesses === 1 ? ' guess' : ' guesses'),
       ''
     ].filter(l => l !== null).concat(emoji);
+    Marquee.flourishResult('connections');
+
     const shareTxt = Marquee.shareText('Connections', dayNum, shareLines);
     res.querySelector('[data-share]').textContent = shareTxt;
     res.querySelector('[data-share-btn]').addEventListener('click', async (e) => {

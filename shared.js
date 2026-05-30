@@ -496,8 +496,19 @@
   }
 
   // ----- Public API -----
+  // Adds a one-shot celebratory flourish to the visible in-game result panel
+  // when today's puzzle was solved. Defensive no-op otherwise. Call at the end
+  // of a game's showResult(): Marquee.flourishResult('<gameId>').
+  function flourishResult(gameId) {
+    var panel = document.querySelector('[data-result] .result');
+    if (!panel) return;
+    var st = loadGameState(gameId);
+    if (st && st.solved) panel.classList.add('is-won');
+  }
+
   window.Marquee = {
     GAMES,
+    flourishResult,
     dayIndex,
     isoDate,
     prettyDate,

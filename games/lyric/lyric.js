@@ -238,6 +238,8 @@
       '🎭 Show: ' + dots(showGuesses) + (totalRevealsForStage('show') ? ' (+' + totalRevealsForStage('show') + ' 💡)' : ''),
       '🎵 Song: ' + dots(songGuesses) + (totalRevealsForStage('song') ? ' (+' + totalRevealsForStage('song') + ' 💡)' : '')
     ].filter(Boolean);
+    Marquee.flourishResult('lyric');
+
     const shareTxt = Marquee.shareText('Lyric', dayNum, shareLines);
     res.querySelector('[data-share]').textContent = shareTxt;
     res.querySelector('[data-share-btn]').addEventListener('click', async (e) => {

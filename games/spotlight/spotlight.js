@@ -189,6 +189,9 @@
         '<button class="btn btn--sm" data-share-btn>Copy result</button>' +
       '</div>';
 
+    Marquee.flourishResult('spotlight');
+
+
     const shareTxt = Marquee.shareText('Spotlight', dayNum, [
       title ? '✦ ' + title.name : null,
       puzzle.category,
