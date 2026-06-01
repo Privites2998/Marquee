@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setlist · Marquee</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="setlist.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="game-shell">
+  <nav class="game-nav" data-game-header></nav>
+
+  <section class="surface">
+    <p class="sl-instructions">Put these songs in the order they're performed in</p>
+    <div class="sl-show" data-show></div>
+
+    <ol class="sl-list" data-list></ol>
+
+    <div class="sl-controls">
+      <button class="btn" data-check>Check order</button>
+    </div>
+
+    <div data-result class="hidden"></div>
+  </section>
+</div>
+
+<script src="../../shared.js"></script>
+<script src="setlists.js"></script>
+<script src="setlist.js"></script>
+</body>
+</html>

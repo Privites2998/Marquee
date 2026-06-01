@@ -483,6 +483,15 @@
       if (g === 3) return 'curtainCall';
       if (g === 4) return 'understudy';
       return 'stageDoor';
+    },
+    setlist: (s) => {
+      if (!s.solved) return null;
+      const c = s.checks || 0;
+      if (c <= 1) return 'ovation';
+      if (c <= 2) return 'encore';
+      if (c <= 4) return 'curtainCall';
+      if (c <= 6) return 'understudy';
+      return 'stageDoor';
     }
   };
 
