@@ -2,9 +2,10 @@
 """Crossword grid generator — Python port. Generates many grids, dedupes by
 word set, ranks by theater words + cleanliness."""
 
-import re, time, random, sys
+import re, time, random, sys, os
 
-WORDS_FILE = '/Users/steph/Documents/GitHub/Marquee/tools/grid-generator/words.js'
+# Resolve words.js relative to this script so it runs on any machine.
+WORDS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'words.js')
 
 THEATER = set("""
 AISLE ARIAS BATON CHOIR CHORD DANCE FLUTE OPERA ORGAN PIANO SCENE SCORE
