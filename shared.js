@@ -11,12 +11,12 @@
   const EPOCH = new Date(2026, 0, 1);
 
   const GAMES = [
+    { id: 'marquee',     name: 'Marquee',         href: 'games/marquee/index.html',     desc: "The title's in lights — unscramble it.",   emoji: '✨' },
     { id: 'crossword',   name: 'Mini Crossword',  href: 'games/crossword/index.html',   desc: '5×5 grid. Broadway clues only.',           emoji: '⬜' },
-    { id: 'lyric',       name: 'Lyric',           href: 'games/lyric/index.html',       desc: 'Name the show. Then name the song.',       emoji: '🎵' },
     { id: 'connections', name: 'Connections',     href: 'games/connections/index.html', desc: '3×3 grid. Cast fits row + column.',        emoji: '🔲' },
-    { id: 'actor',       name: 'Name the Actor',  href: 'games/actor/index.html',       desc: 'A bio. One credit revealed at a time.',    emoji: '🎭' },
     { id: 'showdown',    name: 'Showdown',        href: 'games/showdown/index.html',    desc: 'Five head-to-heads. Pick the bigger one.', emoji: '⚖️' },
-    { id: 'spotlight',   name: 'Spotlight',       href: 'games/spotlight/index.html',   desc: 'Daily trivia category. Five clues.',       emoji: '💡' }
+    { id: 'nowplaying',  name: 'Now Playing',     href: 'games/nowplaying/index.html',  desc: 'Name the show as clues reveal.',           emoji: '🎭' },
+    { id: 'setlist',     name: 'Setlist',         href: 'games/setlist/index.html',     desc: 'Put the songs in performance order.',      emoji: '🎵' }
   ];
 
   function todayLocal() {
@@ -386,11 +386,11 @@
   // the puzzles array.
   const DIFFICULTY_INDEX = {
     crossword:   [2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2],
-    lyric:       [1, 2, 2, 2, 1, 3, 2, 2, 1, 1],
+    marquee:     [1, 1, 1, 1, 1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 1, 2, 1, 2, 1, 1, 3, 2, 2, 3, 3, 3, 3, 2, 2, 2, 3, 2, 2, 2, 1, 1, 1, 2, 3, 1, 3, 3, 3, 3, 2, 2, 2, 3, 2, 3, 1, 2, 3, 2, 2, 3, 3, 2, 2, 2, 2, 3, 2, 1, 1, 2, 2, 3, 3],
     connections: [1, 3, 2, 3, 2, 2, 2, 2, 3, 3, 3, 3, 2, 3, 3, 2, 3, 1, 3, 1, 3, 3, 2, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 2, 3, 3, 3, 3, 3, 3, 3, 1, 3, 2, 3, 3, 3, 2, 3, 2, 3, 3, 3, 1, 1, 3, 3, 3, 2, 3, 1, 2, 3, 3, 1, 2, 2, 3, 1, 3, 1, 3, 3, 3, 3, 3, 3, 2, 1, 3, 1, 3, 3, 3, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 2, 3, 2, 3, 3, 2, 3, 3, 3, 3, 2, 3, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 2, 3, 3, 2, 3, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 2, 2, 3, 3, 1, 3, 3, 3, 1, 3, 3, 1, 2, 3, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 3, 2, 2, 3, 1, 2, 2, 3, 3, 3, 3, 3, 1, 2, 3, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 3, 2, 2, 1, 2, 2, 3, 3, 2, 3, 3, 3, 2, 2, 3, 3, 3, 2, 2, 3, 3, 3, 1, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 2, 3, 3, 3, 1, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 1, 3, 3, 2, 2, 3, 3, 3, 2, 3, 3, 3, 3, 1, 3, 1, 3, 3, 3, 3, 3, 1, 2, 3, 2],
-    actor:       [1, 2, 2, 1, 1, 2, 2, 1],
+    nowplaying:  [1, 1, 2, 2, 2, 2, 2, 3, 2, 1, 2, 1, 3, 3, 2, 2, 2, 2, 3, 3],
     showdown:    [2, 2, 2, 2, 3, 2, 2],
-    spotlight:   [2, 2, 3, 2, 1, 1, 2, 3]
+    setlist:     [2, 1, 2, 2, 2, 3, 1, 2, 2, 2, 2, 1, 3, 3]
   };
 
   // ----- Title-rank system -----
