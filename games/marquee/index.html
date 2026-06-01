@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marquee · the headliner</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="marquee.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="game-shell">
+  <nav class="game-nav" data-game-header></nav>
+
+  <section class="surface">
+    <p class="mq-instructions">Today's title is up in lights — but scrambled. Tap the bulbs to spell it out.</p>
+
+    <div class="mq-hint"><span class="mq-hint__label">On the bill</span> <span data-hint></span></div>
+
+    <!-- The marquee sign: answer slots, bulb-framed -->
+    <div class="mq-sign" data-sign>
+      <div class="bulbs bulbs--chase mq-sign__bulbs"></div>
+      <div class="mq-slots" data-slots></div>
+      <div class="bulbs bulbs--chase mq-sign__bulbs"></div>
+    </div>
+
+    <!-- Tray of scrambled letters -->
+    <div class="mq-tray" data-tray></div>
+
+    <div class="mq-controls" data-controls>
+      <button class="btn btn--ghost btn--sm" data-shuffle>Shuffle</button>
+      <button class="btn btn--ghost btn--sm" data-hint-btn>Hint</button>
+      <button class="btn btn--sm" data-check disabled>Check</button>
+    </div>
+
+    <div data-result class="hidden"></div>
+  </section>
+</div>
+
+<script src="../../shared.js"></script>
+<script src="titles.js"></script>
+<script src="marquee.js"></script>
+</body>
+</html>

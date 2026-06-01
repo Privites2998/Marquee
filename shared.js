@@ -461,6 +461,15 @@
       if (correct === 4) return 'curtainCall';
       if (correct >= 2) return 'understudy';
       return 'stageDoor';
+    },
+    marquee: (s) => {
+      if (!s.solved) return null;
+      const penalty = (s.checks || 0) + (s.hints || 0);
+      if (penalty === 0) return 'ovation';
+      if (penalty <= 1) return 'encore';
+      if (penalty <= 3) return 'curtainCall';
+      if (penalty <= 5) return 'understudy';
+      return 'stageDoor';
     }
   };
 
