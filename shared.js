@@ -197,7 +197,7 @@
 
   // ----- Streak tracking -----
   // Per-game streak: { current, longest, lastDate }
-  // Suite streak ("all 5"): { current, longest, lastDate }
+  // Suite streak ("all 6"): { current, longest, lastDate }
   function streakKey(gameId) { return 'streak:' + (gameId || 'suite'); }
 
   function getStreak(gameId) {
@@ -230,7 +230,7 @@
 
   function recordCompletion(gameId) {
     bumpStreak(gameId);
-    // Suite streak: bumped only when all 5 games are solved today
+    // Suite streak: bumped only when all 6 games are solved today
     const allDone = GAMES.every(g => loadGameState(g.id).solved);
     if (allDone) bumpStreak('suite');
   }
