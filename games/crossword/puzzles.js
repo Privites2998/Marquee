@@ -386,5 +386,37 @@ window.CrosswordPuzzles = [
         5: "Winter rides"
       }
     }
+  },
+  {
+    id: 15, title: "Stage Whisper",
+    grid: ["BUSES","ASIDE","LUNGE","LACED","SLEDS"],
+    clues: {
+      across: { 1: "City transit fleet", 6: "Line delivered to the audience, not the other characters", 7: "Fencer's forward thrust", 8: "Tied up, as sneakers", 9: "Winter coasting rides" },
+      down: { 1: "Formal dances", 2: "The ___ suspects", 3: "Ever ___ (from then on)", 4: "Inched forward", 5: "What you sow in spring" }
+    }
+  },
+  {
+    id: 16, title: "Slow Tempo",
+    grid: ["FATES","IDEAL","LARGO","EGRET","DEARS"],
+    clues: {
+      across: { 1: "The three Greek sisters who spin destiny", 6: "Absolutely perfect", 7: "Slow, in musical tempo", 8: "Long-legged white wading bird", 9: "Terms of endearment" },
+      down: { 1: "Submitted, as paperwork", 2: "A wise old saying", 3: "___ firma (solid ground)", 4: "Raring to go", 5: "Casino one-armed bandits" }
+    }
+  },
+  {
+    id: 17, title: "Silent Beats",
+    grid: ["DECOR","EVOKE","LAVAS","ADEPT","YETIS"],
+    clues: {
+      across: { 1: "A room's styling", 6: "Call to mind", 7: "Molten flows", 8: "Highly skilled", 9: "Himalayan legends" },
+      down: { 1: "Hold up; postpone", 2: "Dodge, as a question", 3: "Desire enviously", 4: "Striped-legged giraffe relative", 5: "Silent beats in a score" }
+    }
+  },
+  {
+    id: 18, title: "Loose Ends",
+    grid: ["UNDID","NOOSE","TRUST","IMBUE","ESTER"],
+    clues: {
+      across: { 1: "Reversed, as a knot", 6: "Hangman's loop", 7: "Faith in someone", 8: "Inspire or saturate, as with feeling", 9: "Fruity-smelling organic compound" },
+      down: { 1: "Undo, as laces", 2: "Standard expectations", 3: "Shadow of a ___", 4: "A magazine's monthly edition", 5: "Discourage; ward off" }
+    }
   }
 ];
