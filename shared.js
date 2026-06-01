@@ -276,7 +276,11 @@
 
   // ----- Share text helper -----
   function shareText(gameName, dayNum, lines) {
-    const header = 'Marquee · ' + gameName + ' · #' + dayNum;
+    // The namesake game collapses to "Marquee #N" (it IS the suite); other
+    // games read "Marquee · <Game> · #N".
+    const header = (!gameName || gameName === 'Marquee')
+      ? 'Marquee #' + dayNum
+      : 'Marquee · ' + gameName + ' · #' + dayNum;
     const body = (lines || []).join('\n');
     const url = 'https://privites2998.github.io/Marquee/'; // GitHub Pages (no custom domain yet)
     return header + '\n' + body + '\n\n' + url;
@@ -469,6 +473,15 @@
       if (penalty <= 1) return 'encore';
       if (penalty <= 3) return 'curtainCall';
       if (penalty <= 5) return 'understudy';
+      return 'stageDoor';
+    },
+    nowplaying: (s) => {
+      if (s.gaveUp || !s.solved) return s.gaveUp ? 'stageDoor' : null;
+      const g = (s.guesses && s.guesses.length) || 0;
+      if (g === 1) return 'ovation';
+      if (g === 2) return 'encore';
+      if (g === 3) return 'curtainCall';
+      if (g === 4) return 'understudy';
       return 'stageDoor';
     }
   };

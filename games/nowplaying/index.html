@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Now Playing · Marquee</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="nowplaying.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="game-shell">
+  <nav class="game-nav" data-game-header></nav>
+
+  <section class="surface">
+    <article class="np-playbill">
+      <div class="np-playbill__header">
+        <div class="np-playbill__redacted" data-redacted>▮▮▮▮▮ ▮▮▮▮▮</div>
+        <div class="np-playbill__sub">Now playing — name the show</div>
+      </div>
+      <div class="np-playbill__blurb" data-bio></div>
+
+      <div class="np-clues">
+        <div class="np-clues__label">Clues</div>
+        <ol class="np-clues__list" data-credits></ol>
+      </div>
+    </article>
+
+    <div class="np-input-row">
+      <input class="input" data-input autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Which show?">
+      <button class="btn" data-submit>Guess</button>
+    </div>
+
+    <div class="row row--center row--wrap" style="margin-top: 0.6rem">
+      <button class="btn btn--ghost btn--sm" data-reveal>Reveal next clue</button>
+      <button class="btn btn--ghost btn--sm" data-giveup>Give up</button>
+    </div>
+
+    <div class="guesses" data-guesses style="margin-top: 1rem"></div>
+
+    <div data-result class="hidden"></div>
+  </section>
+</div>
+
+<script src="../../shared.js"></script>
+<script src="shows.js"></script>
+<script src="nowplaying.js"></script>
+</body>
+</html>
