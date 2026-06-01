@@ -278,7 +278,7 @@
   function shareText(gameName, dayNum, lines) {
     const header = 'Marquee · ' + gameName + ' · #' + dayNum;
     const body = (lines || []).join('\n');
-    const url = 'marquee.games'; // placeholder; user can swap
+    const url = 'https://privites2998.github.io/Marquee/'; // GitHub Pages (no custom domain yet)
     return header + '\n' + body + '\n\n' + url;
   }
 
