@@ -84,7 +84,7 @@ input { font-family: inherit; }
     var(--bulb-on) 3.5px,
     transparent 4.5px);
   background-size: 22px 18px;
-  background-repeat: repeat-x;
+  background-repeat: round no-repeat;
   background-position: center;
   filter: drop-shadow(0 0 6px rgba(244, 196, 48, 0.45));
 }
