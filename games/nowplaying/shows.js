@@ -226,5 +226,137 @@ window.NowPlayingPuzzles = [
       "Centers on bodega owner Usnavi and a winning lottery ticket.",
       "It opens with Usnavi rapping the title number about his corner."
     ]
+  },
+  {
+    id: 21, name: "The Sound of Music", aliases: ["the sound of music", "sound of music"],
+    blurb: "A free-spirited young woman becomes governess to a widowed captain's seven children in pre-war Austria.",
+    clues: [
+      "The final stage collaboration of Rodgers and Hammerstein, from 1959.",
+      "Inspired by the real-life von Trapp Family Singers.",
+      "The family escapes over the mountains to flee the Nazi Anschluss.",
+      "A restless novice nun named Maria is sent from the abbey to the captain's home.",
+      "Maria spins on a hilltop singing the title song, then teaches the kids 'Do-Re-Mi.'"
+    ]
+  },
+  {
+    id: 22, name: "Oklahoma!", aliases: ["oklahoma", "oklahoma!"],
+    blurb: "Cowboys and farmers in a soon-to-be state square off over love and land.",
+    clues: [
+      "The very first musical by Rodgers and Hammerstein, a 1943 landmark.",
+      "Set in Indian Territory just after 1900.",
+      "Agnes de Mille's groundbreaking dream ballet closes Act One.",
+      "Curly and Laurey's romance is shadowed by the menacing farmhand Jud Fry.",
+      "Curly opens with 'Oh, What a Beautiful Mornin'' before the cast belts the title song."
+    ]
+  },
+  {
+    id: 23, name: "Guys and Dolls", aliases: ["guys and dolls"],
+    blurb: "Gamblers, showgirls, and missionaries collide in a fairy tale of old New York.",
+    clues: [
+      "Based on stories by Damon Runyon, with music and lyrics by Frank Loesser.",
+      "Opened on Broadway in 1950 and won the Best Musical Tony.",
+      "A high-stakes bet hinges on taking a mission worker to Havana.",
+      "Characters include Nathan Detroit, Sky Masterson, and Miss Adelaide.",
+      "Sky rolls the dice in a sewer singing 'Luck Be a Lady.'"
+    ]
+  },
+  {
+    id: 24, name: "A Chorus Line", aliases: ["a chorus line", "chorus line"],
+    blurb: "Dancers bare their souls at a grueling audition for a Broadway show.",
+    clues: [
+      "Conceived and directed by Michael Bennett from taped dancer interviews.",
+      "Won the 1976 Pulitzer Prize for Drama and the Best Musical Tony.",
+      "Plays out entirely on a bare stage during a single audition.",
+      "A director named Zach questions seventeen dancers about their lives.",
+      "It ends with the company in gold top hats high-kicking to 'One.'"
+    ]
+  },
+  {
+    id: 25, name: "Jersey Boys", aliases: ["jersey boys"],
+    blurb: "Four blue-collar kids from New Jersey become a chart-topping 1960s pop group.",
+    clues: [
+      "A jukebox musical told in four 'seasons,' each narrated by a different member.",
+      "Won the 2006 Tony for Best Musical.",
+      "Chronicles the rise of Frankie Valli and the Four Seasons.",
+      "Hits include 'Sherry,' 'Walk Like a Man,' and 'Big Girls Don't Cry.'",
+      "Frankie's falsetto soars on 'Can't Take My Eyes Off You.'"
+    ]
+  },
+  {
+    id: 26, name: "Come From Away", aliases: ["come from away"],
+    blurb: "When 38 planes are grounded after 9/11, a small town takes in thousands of stranded strangers.",
+    clues: [
+      "A Canadian musical performed in one continuous act by a tight ensemble.",
+      "Set in Gander, Newfoundland, in September 2001.",
+      "Based on true stories from the week the passengers were stranded.",
+      "Features Beverley Bass, the first female American Airlines captain.",
+      "It opens with the townsfolk singing 'Welcome to the Rock.'"
+    ]
+  },
+  {
+    id: 27, name: "Six", aliases: ["six", "six the musical"],
+    blurb: "The wives of an English king reclaim their stories as a pop-concert competition.",
+    clues: [
+      "A British musical staged as a one-act pop-star showdown.",
+      "Each queen is modeled on a modern pop diva, from Beyoncé to Adele.",
+      "The six wives of Henry VIII compete over who suffered most.",
+      "Their fates: 'divorced, beheaded, died, divorced, beheaded, survived.'",
+      "The queens introduce themselves in the opening number, 'Ex-Wives.'"
+    ]
+  },
+  {
+    id: 28, name: "Newsies", aliases: ["newsies"],
+    blurb: "Newsboys in 1899 New York strike against the papers' powerful publishers.",
+    clues: [
+      "A Disney musical based on its 1992 film flop turned cult favorite.",
+      "Songs by Alan Menken and Jack Feldman.",
+      "Dramatizes the real 1899 Newsboys' Strike against Pulitzer and Hearst.",
+      "Led by Jack Kelly, the boys fight a price hike on their papers.",
+      "They rally with 'Seize the Day' and dream of 'Santa Fe.'"
+    ]
+  },
+  {
+    id: 29, name: "Avenue Q", aliases: ["avenue q"],
+    blurb: "Puppets and people on a shabby city street muddle through adulthood.",
+    clues: [
+      "A raunchy puppet musical for adults, styled after 'Sesame Street.'",
+      "Won the 2004 Tony for Best Musical over 'Wicked.'",
+      "A recent college grad named Princeton searches for his purpose.",
+      "Numbers include 'It Sucks to Be Me' and 'The Internet Is for Porn.'",
+      "The cast cheerfully insists 'Everyone's a Little Bit Racist.'"
+    ]
+  },
+  {
+    id: 30, name: "Jesus Christ Superstar", aliases: ["jesus christ superstar", "superstar"],
+    blurb: "The last days of Jesus are told through the eyes of a conflicted Judas.",
+    clues: [
+      "A sung-through rock opera by Andrew Lloyd Webber and Tim Rice.",
+      "Began as a 1970 concept album before reaching the stage.",
+      "Covers the final week leading to the crucifixion.",
+      "Judas Iscariot narrates, opening with 'Heaven on Their Minds.'",
+      "Mary Magdalene sings 'I Don't Know How to Love Him.'"
+    ]
+  },
+  {
+    id: 31, name: "Evita", aliases: ["evita"],
+    blurb: "A poor Argentine girl claws her way to become her nation's beloved first lady.",
+    clues: [
+      "An Andrew Lloyd Webber and Tim Rice rock opera, sung through.",
+      "Narrated by a sardonic everyman named Che.",
+      "Traces the rise of Eva Perón from actress to political icon.",
+      "Set in 1940s and 50s Argentina around Juan Perón's presidency.",
+      "Eva addresses the crowd from a balcony: 'Don't Cry for Me Argentina.'"
+    ]
+  },
+  {
+    id: 32, name: "Funny Girl", aliases: ["funny girl"],
+    blurb: "A gawky girl with an enormous voice becomes a Ziegfeld superstar while love falters.",
+    clues: [
+      "A 1964 musical that made a young Barbra Streisand a star.",
+      "Loosely based on the life of comedian Fanny Brice.",
+      "Set in the Ziegfeld Follies era of early-1900s New York.",
+      "Fanny's marriage to the gambler Nick Arnstein slowly unravels.",
+      "She defiantly belts 'Don't Rain on My Parade.'"
+    ]
   }
 ];
