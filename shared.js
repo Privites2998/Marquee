@@ -7,8 +7,10 @@
 (function (window) {
   'use strict';
 
-  // Epoch: Jan 1, 2026. dayIndex = days since epoch (local time).
-  const EPOCH = new Date(2026, 0, 1);
+  // Launch epoch: June 9, 2026 = Day One (dayIndex 0, the first puzzle of each
+  // game). dayIndex = days since launch (local time), clamped to >= 0 so the
+  // pre-launch placeholder period shows Day One's puzzle, never a negative day.
+  const EPOCH = new Date(2026, 5, 9);
 
   const GAMES = [
     { id: 'marquee',     name: 'Marquee',         href: 'games/marquee/index.html',     desc: "The title's in lights — unscramble it.",   emoji: '✨' },
@@ -28,7 +30,7 @@
     // The true current day, ignoring any URL overrides. Used to detect
     // archive playback.
     const ms = todayLocal().getTime() - EPOCH.getTime();
-    return Math.floor(ms / 86400000);
+    return Math.max(0, Math.floor(ms / 86400000));
   }
 
   function dayIndex(date) {
@@ -40,13 +42,13 @@
         const override = params.get('day');
         if (override !== null && override !== '') {
           const n = parseInt(override, 10);
-          if (!Number.isNaN(n)) return n;
+          if (!Number.isNaN(n)) return Math.max(0, n);
         }
       } catch (_) { /* ignore */ }
     }
     const d = date || todayLocal();
     const ms = d.getTime() - EPOCH.getTime();
-    return Math.floor(ms / 86400000);
+    return Math.max(0, Math.floor(ms / 86400000));
   }
 
   // Archive mode = the URL is forcing a different day than today's real day.
@@ -78,7 +80,10 @@
   }
 
   // ----- Storage -----
-  const STORAGE_PREFIX = 'marquee:';
+  // Bumping this version segment WIPES all saved progress, streaks, and history
+  // for everyone (each browser starts clean, since the old keys are abandoned).
+  // Set to 'v1:' for the June 9, 2026 launch so no pre-launch test state carries in.
+  const STORAGE_PREFIX = 'marquee:v1:';
 
   const storage = {
     get(key, fallback) {
@@ -279,8 +284,8 @@
     // The namesake game collapses to "Marquee #N" (it IS the suite); other
     // games read "Marquee · <Game> · #N".
     const header = (!gameName || gameName === 'Marquee')
-      ? 'Marquee #' + dayNum
-      : 'Marquee · ' + gameName + ' · #' + dayNum;
+      ? 'Marquee #' + (dayNum + 1)
+      : 'Marquee · ' + gameName + ' · #' + (dayNum + 1);
     const body = (lines || []).join('\n');
     const url = 'https://privites2998.github.io/Marquee/'; // GitHub Pages (no custom domain yet)
     return header + '\n' + body + '\n\n' + url;
@@ -336,7 +341,7 @@
       '<div class="game-title-wrap">' +
         '<a class="game-nav__hub" href="../../index.html">Marquee</a>' +
         '<div class="game-title">' + (opts.title || '') + '</div>' +
-        '<div class="game-meta">No. ' + (opts.dayNum || dayIndex()) + ' · ' + prettyDate(archiveDate()) + '</div>' +
+        '<div class="game-meta">No. ' + ((opts.dayNum != null ? opts.dayNum : dayIndex()) + 1) + ' · ' + prettyDate(archiveDate()) + '</div>' +
       '</div>' +
       '<div class="game-nav__side game-nav__side--right">' + nextLink + '</div>';
 
