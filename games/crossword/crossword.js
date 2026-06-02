@@ -3,7 +3,13 @@
 
   const ROWS = 5, COLS = 5;
   const dayNum = Marquee.dayIndex();
-  const puzzle = Marquee.pickFromList(window.CrosswordPuzzles, dayNum);
+  // Normal play picks the day's puzzle from the curated pool. For testing or
+  // authoring a generated grid, ?gen=<id> loads it from window.CrosswordGenerated
+  // instead (these are clue-less and resolve entirely from the clue-bank).
+  const genId = new URLSearchParams(location.search).get('gen');
+  const puzzle = genId && window.CrosswordGenerated
+    ? (window.CrosswordGenerated.find(p => p.id === genId) || window.CrosswordGenerated[0])
+    : Marquee.pickFromList(window.CrosswordPuzzles, dayNum);
 
   Marquee.renderGameHeader({ title: 'Mini Crossword', dayNum: dayNum });
   document.querySelector('[data-puzzle-title]').textContent = puzzle.title || '';
@@ -51,6 +57,29 @@
       }
     }
   }
+
+  // ----- Clue resolution -----
+  // A clue is resolved per entry as: the puzzle's own clue for that number (an
+  // override, used by the 18 curated puzzles), else the clue-bank entry for the
+  // answer word (so generated grids auto-clue), else blank. Any uncovered words
+  // are warned about so authoring can spot gaps without spoiling players.
+  const CLUE_BANK = window.CrosswordClues || {};
+  function entryWord(ent) { return ent.cells.map(c => c.sol).join(''); }
+  function clueFor(dir, num) {
+    const ent = entries[dir][num];
+    const override = puzzle.clues && puzzle.clues[dir] && puzzle.clues[dir][num];
+    if (override) return override;
+    return (ent && CLUE_BANK[entryWord(ent)]) || '';
+  }
+  (function warnUncovered() {
+    const missing = [];
+    ['across', 'down'].forEach(dir => {
+      Object.keys(entries[dir]).forEach(num => {
+        if (!clueFor(dir, num)) missing.push(entryWord(entries[dir][num]));
+      });
+    });
+    if (missing.length) console.warn('[crossword] puzzle "' + puzzle.id + '" has no clue for: ' + missing.join(', '));
+  })();
 
   // Restore in-progress entries
   const saved = Marquee.loadGameState('crossword');
@@ -122,7 +151,7 @@
     // Update current clue display
     const curEl = document.querySelector('[data-current-clue]');
     if (activeEntryNum != null) {
-      const clueText = (puzzle.clues[direction] && puzzle.clues[direction][activeEntryNum]) || '';
+      const clueText = clueFor(direction, activeEntryNum);
       curEl.querySelector('.xword-current__dir').textContent = activeEntryNum + ' ' + direction.toUpperCase();
       curEl.querySelector('.xword-current__text').textContent = clueText;
     } else {
@@ -143,7 +172,7 @@
         const li = document.createElement('li');
         li.dataset.num = num;
         li.dataset.dir = dir;
-        const clue = (puzzle.clues[dir] && puzzle.clues[dir][num]) || '';
+        const clue = clueFor(dir, num);
         li.innerHTML = '<b>' + num + '.</b>' + clue;
         li.addEventListener('click', () => {
           const ent = entries[dir][num];

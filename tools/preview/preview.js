@@ -10,34 +10,16 @@
       validator: validateCrossword
     },
     {
-      id: 'lyric', label: 'Lyric',
-      list: window.LyricPuzzles || [],
-      titleFor: p => (p.show && p.show.answer) + ' · ' + (p.song && p.song.answer),
-      validator: validateLyric
-    },
-    {
       id: 'connections', label: 'Connections',
       list: (window.ConnectionsData && window.ConnectionsData.PUZZLES) || [],
       titleFor: p => p.title || ('Puzzle ' + p.id),
       validator: validateConnections
     },
     {
-      id: 'actor', label: 'Name the Actor',
-      list: window.ActorPuzzles || [],
-      titleFor: p => p.name,
-      validator: validateActor
-    },
-    {
       id: 'showdown', label: 'Showdown',
       list: window.ShowdownPuzzles || [],
       titleFor: p => 'Puzzle ' + p.id + ' (' + ((p.matchups || []).length) + ' matchups)',
       validator: validateShowdown
-    },
-    {
-      id: 'spotlight', label: 'Spotlight',
-      list: window.SpotlightPuzzles || [],
-      titleFor: p => p.category,
-      validator: validateSpotlight
     }
   ];
 
@@ -231,13 +213,6 @@
     });
   }
 
-  function validateLyric(p, idx, issues) {
-    const ctx = 'Lyric #' + p.id;
-    require(p, 'lyric', ctx, issues);
-    if (!p.show || !p.show.answer) issues.push({ level: 'error', msg: ctx + ': missing show.answer' });
-    if (!p.song || !p.song.answer) issues.push({ level: 'error', msg: ctx + ': missing song.answer' });
-  }
-
   function validateConnections(p, idx, issues) {
     const ctx = 'Connections #' + p.id;
     const constraints = (window.ConnectionsData && window.ConnectionsData.CONSTRAINTS) || {};
@@ -263,18 +238,6 @@
     }
   }
 
-  function validateActor(p, idx, issues) {
-    const ctx = 'Actor #' + p.id + ' (' + (p.name || '?') + ')';
-    require(p, 'name', ctx, issues);
-    require(p, 'bio', ctx, issues);
-    if (!Array.isArray(p.credits) || p.credits.length !== 5) {
-      issues.push({ level: 'error', msg: ctx + ': must have exactly 5 credits (got ' + (p.credits ? p.credits.length : 'none') + ')' });
-    }
-    if (!Array.isArray(p.aliases)) {
-      issues.push({ level: 'warn', msg: ctx + ': missing aliases array (matching may be strict)' });
-    }
-  }
-
   function validateShowdown(p, idx, issues) {
     const ctx = 'Showdown #' + p.id;
     if (!Array.isArray(p.matchups) || p.matchups.length !== 5) {
@@ -292,28 +255,6 @@
         issues.push({ level: 'warn', msg: mctx + ': a and b have identical values (tie — no correct answer)' });
       }
       if (!m.a.name || !m.b.name) issues.push({ level: 'error', msg: mctx + ': a.name or b.name missing' });
-    });
-  }
-
-  function validateSpotlight(p, idx, issues) {
-    const ctx = 'Spotlight #' + p.id;
-    require(p, 'category', ctx, issues);
-    if (!Array.isArray(p.clues) || p.clues.length !== 5) {
-      issues.push({ level: 'error', msg: ctx + ': must have exactly 5 clues (got ' + (p.clues ? p.clues.length : 'none') + ')' });
-      return;
-    }
-    const seenAnswers = new Set();
-    p.clues.forEach((c, i) => {
-      const cctx = ctx + ' clue ' + (i + 1);
-      if (!c.clue) issues.push({ level: 'error', msg: cctx + ': missing clue text' });
-      if (!c.answer) issues.push({ level: 'error', msg: cctx + ': missing answer' });
-      if (c.answer) {
-        const norm = c.answer.toLowerCase().trim();
-        if (seenAnswers.has(norm)) {
-          issues.push({ level: 'warn', msg: cctx + ': duplicate answer "' + c.answer + '" within this category' });
-        }
-        seenAnswers.add(norm);
-      }
     });
   }
 
