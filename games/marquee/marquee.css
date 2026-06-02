@@ -75,12 +75,39 @@
 }
 .mq-slot:not(.is-filled):hover { border-color: rgba(244,196,48,0.45); }
 
-/* Solved: all bulbs blaze gold */
+/* Solved: the sign powers on, bulbs blazing gold left-to-right.
+   Each slot's stagger is set inline (animation-delay) in marquee.js. */
 .mq-sign.is-solved .mq-slot {
   background: var(--bulb-on);
   color: var(--curtain-deep);
   border-color: var(--bulb-glow);
   box-shadow: var(--shadow-bulb);
+  animation: mq-light-on 0.42s ease-out both;
+}
+@keyframes mq-light-on {
+  0% {
+    background: rgba(0,0,0,0.35);
+    color: var(--bulb-off);
+    border-color: rgba(244,196,48,0.25);
+    box-shadow: none;
+    transform: scale(0.9);
+  }
+  55% {
+    background: var(--bulb-glow);
+    box-shadow: var(--shadow-bulb);
+    transform: scale(1.14);
+  }
+  100% {
+    background: var(--bulb-on);
+    color: var(--curtain-deep);
+    border-color: var(--bulb-glow);
+    box-shadow: var(--shadow-bulb);
+    transform: scale(1);
+  }
+}
+/* Respect users who'd rather not have the cascade pop. */
+@media (prefers-reduced-motion: reduce) {
+  .mq-sign.is-solved .mq-slot { animation: none; }
 }
 .mq-sign.is-wrong .mq-slots { animation: mq-shake 0.4s; }
 @keyframes mq-shake {

@@ -19,6 +19,7 @@
     words.push({ slotIndices, letters: letters.split('') });
   });
   const N = answerLetters.length;
+  const SOLVE_STEP = 55; // ms between each bulb lighting up on a win
 
   // ----- Tray tiles: scrambled multiset of the answer letters -----
   function buildTray() {
@@ -76,6 +77,9 @@
         const slot = document.createElement('div');
         slot.className = 'mq-slot' + (state.placed[i] ? ' is-filled' : '') + (state.locked[i] ? ' is-locked' : '');
         slot.textContent = state.placed[i] ? letterOf(state.placed[i]) : '';
+        // On a win the sign powers on left-to-right: stagger each bulb by its
+        // reading-order index (i). CSS keyframe mq-light-on does the pop.
+        if (state.solved) slot.style.animationDelay = (i * SOLVE_STEP) + 'ms';
         if (!state.solved && !state.locked[i] && state.placed[i]) {
           slot.addEventListener('click', () => { state.placed[i] = null; persist(); render(); });
         }
@@ -169,10 +173,14 @@
   function win() {
     state.solved = true;
     persist({ solved: true });
-    signEl.classList.add('is-solved');
     controlsEl.classList.add('hidden');
+    // render() now stamps each slot's stagger delay; adding is-solved fires
+    // the cascade. Hold the result panel until the sign finishes powering on.
     render();
-    showResult();
+    signEl.classList.add('is-solved');
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const cascadeMs = reduced ? 0 : Math.min((N - 1) * SOLVE_STEP + 420, 1500);
+    setTimeout(showResult, cascadeMs);
   }
 
   function showResult() {
