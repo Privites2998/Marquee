@@ -3,13 +3,13 @@
 
   const ROWS = 5, COLS = 5;
   const dayNum = Marquee.dayIndex();
-  // Normal play picks the day's puzzle from the curated pool. For testing or
-  // authoring a generated grid, ?gen=<id> loads it from window.CrosswordGenerated
-  // instead (these are clue-less and resolve entirely from the clue-bank).
+  // The daily pool is the curated puzzles plus the auto-clued generated grids.
+  // ?gen=<id> still loads a single generated grid in isolation for testing.
+  const POOL = (window.CrosswordPuzzles || []).concat(window.CrosswordGenerated || []);
   const genId = new URLSearchParams(location.search).get('gen');
   const puzzle = genId && window.CrosswordGenerated
     ? (window.CrosswordGenerated.find(p => p.id === genId) || window.CrosswordGenerated[0])
-    : Marquee.pickFromList(window.CrosswordPuzzles, dayNum);
+    : Marquee.pickFromList(POOL, dayNum);
 
   Marquee.renderGameHeader({ title: 'Mini Crossword', dayNum: dayNum });
   document.querySelector('[data-puzzle-title]').textContent = puzzle.title || '';
