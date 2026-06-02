@@ -25,5 +25,6 @@ window.CrosswordGenerated = [
   { id: 'gen-8',  title: 'Intermission',  grid: ["DIGIT","ADORE","RERAN","TASTE","SLEET"] },
   { id: 'gen-9',  title: 'Backstage',     grid: ["HOCKS","OPINE","LEVEE","DRIED","SALLY"] },
   { id: 'gen-10', title: 'Encore',        grid: ["PARES","SUEDE","ADAGE","LIMED","MOSSY"] },
-  { id: 'gen-11', title: 'Curtain Call',  grid: ["NASAL","ABUSE","MASSE","ETHER","DEITY"] }
+  { id: 'gen-11', title: 'Curtain Call',  grid: ["NASAL","ABUSE","MASSE","ETHER","DEITY"] },
+  { id: 'gen-12', title: 'Company',       grid: ["TROOP","REVUE","ABATE","METER","SLEDS"] }
 ];

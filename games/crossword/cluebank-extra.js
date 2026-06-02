@@ -370,7 +370,17 @@
     VAPOR: "Mist or steam",
     VISAS: "Passport stamps for travel"
   };
-  [extra, gridWords].forEach(function (obj) {
+  // Words for additional generated grids (gen-12 onward), added 2026-06-02.
+  var gridWords2 = {
+    TROOP: "A scout group, or to march along",
+    METER: "Poetic rhythm, or a parking unit",
+    TRAMS: "Streetcars",
+    REBEL: "One who defies authority",
+    OVATE: "Egg-shaped, in botany",
+    OUTED: "Revealed publicly",
+    PEERS: "Looks closely, or one's equals"
+  };
+  [extra, gridWords, gridWords2].forEach(function (obj) {
     for (var w in obj) {
       if (!Object.prototype.hasOwnProperty.call(window.CrosswordClues, w)) {
         window.CrosswordClues[w] = obj[w];
