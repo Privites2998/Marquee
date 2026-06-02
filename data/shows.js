@@ -750,5 +750,383 @@ window.MarqueeShows = [
     tonyWins: 4,
     awards: ["4 Tony Awards (2008)", "Best Musical and Best Score"],
     tags: ["miranda", "latin", "contemporary"]
+  },
+  {
+    id: "hairspray",
+    title: "Hairspray",
+    aka: ["hairspray"],
+    music: "Marc Shaiman",
+    lyrics: "Scott Wittman and Marc Shaiman",
+    book: "Mark O'Donnell and Thomas Meehan",
+    basedOn: "John Waters's 1988 film 'Hairspray'",
+    broadwayOpen: "2002-08-15",
+    broadwayClose: "2009-01-04",
+    status: "closed",
+    venue: "Neil Simon Theatre",
+    acts: 2,
+    setting: "Baltimore, 1962",
+    synopsis: "A big-hearted teen dances onto local TV and into the fight to integrate it.",
+    teaser: "A big-hearted teen dances onto a local TV show and pushes to integrate it.",
+    cast: [
+      { role: "Tracy Turnblad", actor: "Marissa Jaret Winokur", origin: "original" },
+      { role: "Edna Turnblad", actor: "Harvey Fierstein", origin: "original" },
+      { role: "Link Larkin", actor: "Matthew Morrison", origin: "original" },
+      { role: "Penny Pingleton", actor: "Kerry Butler", origin: "original" }
+    ],
+    songs: [
+      "Good Morning Baltimore", "The Nicest Kids in Town", "Welcome to the 60's",
+      "Run and Tell That", "Big, Blonde and Beautiful", "(You're) Timeless to Me",
+      "Without Love", "I Know Where I've Been", "You Can't Stop the Beat"
+    ],
+    signatureSong: "You Can't Stop the Beat",
+    pulitzer: false,
+    tonyWins: 8,
+    awards: ["8 Tony Awards (2003)"],
+    tags: ["comedy", "1960s", "dance"]
+  },
+  {
+    id: "mamma-mia",
+    title: "Mamma Mia!",
+    aka: ["mamma mia", "mamma mia!"],
+    music: "Benny Andersson and Björn Ulvaeus (ABBA)",
+    lyrics: "Benny Andersson and Björn Ulvaeus",
+    book: "Catherine Johnson",
+    basedOn: "The songs of ABBA (jukebox musical)",
+    broadwayOpen: "2001-10-18",
+    broadwayClose: "2015-09-12",
+    status: "closed",
+    venue: "Winter Garden Theatre",
+    acts: 2,
+    setting: "A small Greek island, present day",
+    synopsis: "A bride-to-be secretly invites three of her mother's old flames to find her father.",
+    teaser: "A bride-to-be secretly invites three of her mother's old flames to her wedding.",
+    cast: [
+      { role: "Donna Sheridan", actor: "Louise Pitre", origin: "original" },
+      { role: "Sophie Sheridan", actor: "Tina Maddigan", origin: "original" }
+    ],
+    songs: [
+      "Honey, Honey", "Money, Money, Money", "Mamma Mia", "Dancing Queen",
+      "Voulez-Vous", "S.O.S.", "The Winner Takes It All", "Take a Chance on Me"
+    ],
+    signatureSong: "Dancing Queen",
+    pulitzer: false,
+    tonyWins: 0,
+    awards: ["Nominated for 5 Tony Awards (2002); won none"],
+    tags: ["jukebox", "abba", "comedy"]
+  },
+  {
+    id: "six",
+    title: "Six",
+    aka: ["six", "six the musical"],
+    music: "Toby Marlow and Lucy Moss",
+    lyrics: "Toby Marlow and Lucy Moss",
+    book: "Toby Marlow and Lucy Moss",
+    basedOn: "The six wives of Henry VIII",
+    broadwayOpen: "2021-10-03",
+    broadwayClose: null,
+    status: "running",
+    venue: "Brooks Atkinson Theatre",
+    acts: 1,
+    setting: "A pop concert, the present",
+    synopsis: "The six wives of Henry VIII reclaim their stories as a pop-concert competition.",
+    teaser: "Six historical queens reclaim their stories as a pop-concert showdown.",
+    cast: [
+      { role: "Catherine of Aragon", actor: "Adrianna Hicks", origin: "original" },
+      { role: "Anne Boleyn", actor: "Andrea Macasaet", origin: "original" },
+      { role: "Jane Seymour", actor: "Abby Mueller", origin: "original" },
+      { role: "Katherine Howard", actor: "Samantha Pauly", origin: "original" }
+    ],
+    songs: [
+      "Ex-Wives", "No Way", "Don't Lose Ur Head", "Heart of Stone",
+      "Get Down", "All You Wanna Do", "I Don't Need Your Love", "Six"
+    ],
+    signatureSong: "Ex-Wives",
+    pulitzer: false,
+    tonyWins: 2,
+    awards: ["2 Tony Awards (2022)", "Best Original Score and Best Costume Design"],
+    tags: ["pop", "one-act", "concert", "running"]
+  },
+  {
+    id: "newsies",
+    title: "Newsies",
+    aka: ["newsies"],
+    music: "Alan Menken",
+    lyrics: "Jack Feldman",
+    book: "Harvey Fierstein",
+    basedOn: "Disney's 1992 film 'Newsies' and the 1899 Newsboys' Strike",
+    broadwayOpen: "2012-03-29",
+    broadwayClose: "2014-08-24",
+    status: "closed",
+    venue: "Nederlander Theatre",
+    acts: 2,
+    setting: "New York City, 1899",
+    synopsis: "Newsboys strike against the city's powerful newspaper publishers.",
+    teaser: "Newsboys go on strike against the city's most powerful publishers.",
+    cast: [
+      { role: "Jack Kelly", actor: "Jeremy Jordan", origin: "original" },
+      { role: "Katherine Plumber", actor: "Kara Lindsay", origin: "original" },
+      { role: "Davey", actor: "Ben Fankhauser", origin: "original" },
+      { role: "Crutchie", actor: "Andrew Keenan-Bolger", origin: "original" }
+    ],
+    songs: [
+      "Santa Fe (Prologue)", "Carrying the Banner", "The World Will Know",
+      "Watch What Happens", "Seize the Day", "Santa Fe", "King of New York",
+      "Once and for All"
+    ],
+    signatureSong: "Seize the Day",
+    pulitzer: false,
+    tonyWins: 2,
+    awards: ["2 Tony Awards (2012)", "Best Original Score and Best Choreography"],
+    tags: ["disney", "dance", "historical"]
+  },
+  {
+    id: "avenue-q",
+    title: "Avenue Q",
+    aka: ["avenue q"],
+    music: "Robert Lopez and Jeff Marx",
+    lyrics: "Robert Lopez and Jeff Marx",
+    book: "Jeff Whitty",
+    basedOn: null,
+    broadwayOpen: "2003-07-31",
+    broadwayClose: "2009-09-13",
+    status: "closed",
+    venue: "John Golden Theatre",
+    acts: 2,
+    setting: "A run-down outer-borough New York street, present day",
+    synopsis: "Puppets and people on a shabby street muddle through post-college adulthood.",
+    teaser: "Puppets and people on a shabby street muddle through grown-up life.",
+    cast: [
+      { role: "Princeton / Rod", actor: "John Tartaglia", origin: "original" },
+      { role: "Kate Monster / Lucy", actor: "Stephanie D'Abruzzo", origin: "original" }
+    ],
+    songs: [
+      "It Sucks to Be Me", "If You Were Gay", "Purpose",
+      "Everyone's a Little Bit Racist", "The Internet Is for Porn",
+      "There's a Fine, Fine Line", "Schadenfreude", "For Now"
+    ],
+    signatureSong: "It Sucks to Be Me",
+    pulitzer: false,
+    tonyWins: 3,
+    awards: ["3 Tony Awards (2004)", "Best Musical, Best Score, Best Book"],
+    tags: ["comedy", "puppets", "satire"]
+  },
+  {
+    id: "jesus-christ-superstar",
+    title: "Jesus Christ Superstar",
+    aka: ["jesus christ superstar", "superstar"],
+    music: "Andrew Lloyd Webber",
+    lyrics: "Tim Rice",
+    book: "Andrew Lloyd Webber and Tim Rice",
+    basedOn: "The Gospels' account of Jesus's final days",
+    broadwayOpen: "1971-10-12",
+    broadwayClose: "1973-06-30",
+    status: "closed",
+    venue: "Mark Hellinger Theatre",
+    acts: 2,
+    setting: "Jerusalem, the final week of Jesus's life",
+    synopsis: "The last days of Jesus, told through the eyes of a conflicted Judas.",
+    teaser: "The final days of a religious leader, seen through a doubting follower's eyes.",
+    cast: [
+      { role: "Jesus", actor: "Jeff Fenholt", origin: "original" },
+      { role: "Judas Iscariot", actor: "Ben Vereen", origin: "original" },
+      { role: "Mary Magdalene", actor: "Yvonne Elliman", origin: "original" }
+    ],
+    songs: [
+      "Heaven on Their Minds", "What's the Buzz", "Everything's Alright",
+      "I Don't Know How to Love Him", "The Last Supper", "Gethsemane",
+      "Superstar", "John Nineteen: Forty-One"
+    ],
+    signatureSong: "Superstar",
+    pulitzer: false,
+    tonyWins: 0,
+    awards: ["Nominated for 5 Tony Awards (1972); won none"],
+    tags: ["rock-opera", "sung-through", "lloyd-webber"]
+  },
+  {
+    id: "evita",
+    title: "Evita",
+    aka: ["evita"],
+    music: "Andrew Lloyd Webber",
+    lyrics: "Tim Rice",
+    book: "Andrew Lloyd Webber and Tim Rice",
+    basedOn: "The life of Eva Perón",
+    broadwayOpen: "1979-09-25",
+    broadwayClose: "1983-06-26",
+    status: "closed",
+    venue: "Broadway Theatre",
+    acts: 2,
+    setting: "Argentina, 1934-1952",
+    synopsis: "A poor Argentine girl rises to become her nation's beloved first lady.",
+    teaser: "A poor girl claws her way to become her nation's beloved first lady.",
+    cast: [
+      { role: "Eva Perón", actor: "Patti LuPone", origin: "original" },
+      { role: "Che", actor: "Mandy Patinkin", origin: "original" },
+      { role: "Juan Perón", actor: "Bob Gunton", origin: "original" }
+    ],
+    songs: [
+      "Oh What a Circus", "Buenos Aires", "Another Suitcase in Another Hall",
+      "A New Argentina", "Don't Cry for Me Argentina", "High Flying, Adored",
+      "Rainbow High", "The Money Kept Rolling In"
+    ],
+    signatureSong: "Don't Cry for Me Argentina",
+    pulitzer: false,
+    tonyWins: 7,
+    awards: ["7 Tony Awards (1980)", "Best Musical and Best Score"],
+    tags: ["rock-opera", "sung-through", "lloyd-webber", "biographical"]
+  },
+  {
+    id: "funny-girl",
+    title: "Funny Girl",
+    aka: ["funny girl"],
+    music: "Jule Styne",
+    lyrics: "Bob Merrill",
+    book: "Isobel Lennart",
+    basedOn: "The life of comedian Fanny Brice",
+    broadwayOpen: "1964-03-26",
+    broadwayClose: "1967-07-01",
+    status: "closed",
+    venue: "Winter Garden Theatre",
+    acts: 2,
+    setting: "New York, the 1910s-1920s Ziegfeld era",
+    synopsis: "A gawky girl with a huge voice becomes a Ziegfeld star as her marriage falters.",
+    teaser: "A gawky girl with an enormous voice becomes a Follies superstar.",
+    cast: [
+      { role: "Fanny Brice", actor: "Barbra Streisand", origin: "original" },
+      { role: "Nick Arnstein", actor: "Sydney Chaplin", origin: "original" }
+    ],
+    songs: [
+      "I'm the Greatest Star", "Cornet Man", "People", "You Are Woman, I Am Man",
+      "Don't Rain on My Parade", "Sadie, Sadie", "Who Are You Now?",
+      "The Music That Makes Me Dance"
+    ],
+    signatureSong: "Don't Rain on My Parade",
+    pulitzer: false,
+    tonyWins: 0,
+    awards: ["Nominated for 8 Tony Awards (1964); won none"],
+    tags: ["golden-age", "biographical", "star-vehicle"]
+  },
+  {
+    id: "gypsy",
+    title: "Gypsy",
+    aka: ["gypsy"],
+    music: "Jule Styne",
+    lyrics: "Stephen Sondheim",
+    book: "Arthur Laurents",
+    basedOn: "The memoirs of Gypsy Rose Lee",
+    broadwayOpen: "1959-05-21",
+    broadwayClose: "1961-03-25",
+    status: "closed",
+    venue: "Broadway Theatre",
+    acts: 2,
+    setting: "Vaudeville-era America, 1920s-1930s",
+    synopsis: "A relentless stage mother pushes her daughters toward stardom.",
+    teaser: "The ultimate stage mother pushes her daughters toward the spotlight.",
+    cast: [
+      { role: "Rose", actor: "Ethel Merman", origin: "original" },
+      { role: "Louise (Gypsy Rose Lee)", actor: "Sandra Church", origin: "original" },
+      { role: "Herbie", actor: "Jack Klugman", origin: "original" }
+    ],
+    songs: [
+      "Let Me Entertain You", "Some People", "Small World",
+      "You'll Never Get Away from Me", "Everything's Coming Up Roses",
+      "Together (Wherever We Go)", "You Gotta Get a Gimmick", "Rose's Turn"
+    ],
+    signatureSong: "Everything's Coming Up Roses",
+    pulitzer: false,
+    tonyWins: 0,
+    awards: ["Nominated for 8 Tony Awards (1960); won none"],
+    tags: ["golden-age", "stage-mother", "sondheim-lyrics"]
+  },
+  {
+    id: "pippin",
+    title: "Pippin",
+    aka: ["pippin"],
+    music: "Stephen Schwartz",
+    lyrics: "Stephen Schwartz",
+    book: "Roger O. Hirson",
+    basedOn: "Loosely inspired by Pepin, son of Charlemagne",
+    broadwayOpen: "1972-10-23",
+    broadwayClose: "1977-06-12",
+    status: "closed",
+    venue: "Imperial Theatre",
+    acts: 2,
+    setting: "A storybook medieval frame, played by a traveling troupe",
+    synopsis: "A young prince searches for meaning, guided by a sinister troupe of players.",
+    teaser: "A young prince searches for meaning, egged on by a sly troupe of players.",
+    cast: [
+      { role: "Pippin", actor: "John Rubinstein", origin: "original" },
+      { role: "Leading Player", actor: "Ben Vereen", origin: "original" },
+      { role: "Berthe", actor: "Irene Ryan", origin: "original" }
+    ],
+    songs: [
+      "Magic to Do", "Corner of the Sky", "Glory", "Morning Glow",
+      "No Time at All", "On the Right Track", "Finale"
+    ],
+    signatureSong: "Corner of the Sky",
+    pulitzer: false,
+    tonyWins: 5,
+    awards: ["5 Tony Awards (1973)", "including Best Director (Bob Fosse)"],
+    tags: ["schwartz", "fosse", "meta"]
+  },
+  {
+    id: "come-from-away",
+    title: "Come From Away",
+    aka: ["come from away"],
+    music: "Irene Sankoff and David Hein",
+    lyrics: "Irene Sankoff and David Hein",
+    book: "Irene Sankoff and David Hein",
+    basedOn: "True events in Gander, Newfoundland after the September 11 attacks",
+    broadwayOpen: "2017-03-12",
+    broadwayClose: "2022-10-02",
+    status: "closed",
+    venue: "Gerald Schoenfeld Theatre",
+    acts: 1,
+    setting: "Gander, Newfoundland, September 2001",
+    synopsis: "A small town takes in thousands of stranded air passengers after 9/11.",
+    teaser: "When the planes are grounded, a small town takes in thousands of strangers.",
+    cast: [
+      { role: "Beverley Bass and others", actor: "Jenn Colella", origin: "original" }
+    ],
+    songs: [
+      "Welcome to the Rock", "38 Planes", "Blankets and Bedding",
+      "Me and the Sky", "Something's Missing", "Finale"
+    ],
+    signatureSong: "Me and the Sky",
+    pulitzer: false,
+    tonyWins: 1,
+    awards: ["Tony Award for Best Direction of a Musical (2017)"],
+    tags: ["one-act", "true-story", "ensemble"]
+  },
+  {
+    id: "jersey-boys",
+    title: "Jersey Boys",
+    aka: ["jersey boys"],
+    music: "Bob Gaudio",
+    lyrics: "Bob Crewe",
+    book: "Marshall Brickman and Rick Elice",
+    basedOn: "The story of Frankie Valli and the Four Seasons",
+    broadwayOpen: "2005-11-06",
+    broadwayClose: "2017-01-15",
+    status: "closed",
+    venue: "August Wilson Theatre",
+    acts: 2,
+    setting: "New Jersey and beyond, 1950s-1960s",
+    synopsis: "Four working-class kids become the chart-topping group the Four Seasons.",
+    teaser: "Four blue-collar kids become one of the biggest pop groups of the 1960s.",
+    cast: [
+      { role: "Frankie Valli", actor: "John Lloyd Young", origin: "original" },
+      { role: "Tommy DeVito", actor: "Christian Hoff", origin: "original" },
+      { role: "Nick Massi", actor: "J. Robert Spencer", origin: "original" },
+      { role: "Bob Gaudio", actor: "Daniel Reichard", origin: "original" }
+    ],
+    songs: [
+      "Sherry", "Big Girls Don't Cry", "Walk Like a Man",
+      "Can't Take My Eyes Off You", "December, 1963 (Oh, What a Night)"
+    ],
+    signatureSong: "Can't Take My Eyes Off You",
+    pulitzer: false,
+    tonyWins: 4,
+    awards: ["4 Tony Awards (2006)", "including Best Musical"],
+    tags: ["jukebox", "biographical", "1960s"]
   }
 ];
